@@ -5,9 +5,10 @@
 ╚═══════════════════════════════════════════════════════════════╝
 """
 
-from pathlib import Path
 from datetime import timedelta
-from decouple import config, Csv
+from pathlib import Path
+
+from decouple import Csv, config
 
 # ── Paths ────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,7 +37,6 @@ INSTALLED_APPS = [
     # KLA apps
     "accounts",   # Custom user model + auth
     "core",       # Shared base models
-    "inventory",  # Products, Categories, Stock Movements
 ]
 
 # ── Middleware ────────────────────────────────────────────────

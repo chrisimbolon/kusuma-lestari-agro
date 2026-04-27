@@ -43,10 +43,7 @@ urlpatterns = [
     path("api/auth/", include("accounts.urls")),
 
     # ── KLA Application API ────────────────────────────────────
-    path("api/", include("inventory.urls")),
-    # path("api/", include("accounting.urls")),  ← coming next
-    # path("api/", include("sales.urls")),        ← coming next
-    # path("api/", include("purchasing.urls")),   ← coming next
+
 ]
 
 # Serve media files in development
