@@ -20,6 +20,8 @@ Thumbs.db
 # -----------------------------
 # Python / Django (future backend)
 # -----------------------------
+*.pyc
+__pycache__/
 backend_backup/
 backend/__pycache__/
 backend/*.pyc
