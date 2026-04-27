@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # KLA apps
     "accounts",   # Custom user model + auth
     "core",       # Shared base models
+    "cms",
 ]
 
 # ── Middleware ────────────────────────────────────────────────
