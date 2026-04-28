@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import CompanyProfile, ContactMessage, Service, TeamMember
+from .models import (CompanyProfile, ContactMessage, GalleryImage, Service,
+                     TeamMember)
 
 
 @admin.register(CompanyProfile)
@@ -24,3 +25,8 @@ class TeamMemberAdmin(admin.ModelAdmin):
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ("name", "email", "is_read", "created_at")
     list_filter = ("is_read",)
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ("title", "is_active", "created_at")
+    list_filter = ("is_active",)
