@@ -80,3 +80,24 @@ class ContactMessage(TimeStampedModel):
 
     def __str__(self):
         return f"{self.name} - {self.email}"
+    
+
+# ─────────────────────────────────────────────
+# Gallery (marketing / proof / branding)
+# ─────────────────────────────────────────────
+class GalleryImage(TimeStampedModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    title = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to="gallery/")
+
+    caption = models.TextField(blank=True)
+
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order", "-created_at"]
+
+    def __str__(self):
+        return self.title or f"Gallery Image {self.id}"
