@@ -19,15 +19,12 @@ API Endpoint Map:
 ─────────────────────────────────────────────────────────────────
 """
 
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework_simplejwt.views import (
-    TokenRefreshView,
-    TokenBlacklistView,
-)
+from django.contrib import admin
+from django.urls import include, path
 from kla_project.auth_views import KLATokenObtainPairView
+from rest_framework_simplejwt.views import TokenBlacklistView, TokenRefreshView
 
 urlpatterns = [
     # ── Django admin ──────────────────────────────────────────
@@ -41,12 +38,10 @@ urlpatterns = [
 
     # ── Accounts (register, me, etc.) ─────────────────────────
     path("api/auth/", include("accounts.urls")),
+    path("api/cms/", include("cms.urls")),
 
     # ── KLA Application API ────────────────────────────────────
-    path("api/", include("inventory.urls")),
-    # path("api/", include("accounting.urls")),  ← coming next
-    # path("api/", include("sales.urls")),        ← coming next
-    # path("api/", include("purchasing.urls")),   ← coming next
+
 ]
 
 # Serve media files in development
