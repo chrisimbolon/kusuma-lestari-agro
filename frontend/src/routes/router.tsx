@@ -24,59 +24,6 @@ const RegisterPage       = lazy(() => import("../features/auth/pages/RegisterPag
 // ── Dashboard ──────────────────────────────────────────────
 const DashboardPage      = lazy(() => import("../features/dashboard/pages/DashboardPage"));
 
-// ── Penjualan (Sales) ──────────────────────────────────────
-const QuotationsPage       = lazy(() => import("../features/sales/pages/QuotationsPage"));
-const SalesOrdersPage      = lazy(() => import("../features/sales/pages/SalesOrdersPage"));
-const DeliveryOrdersPage   = lazy(() => import("../features/sales/pages/DeliveryOrdersPage"));
-const SalesInvoicesPage    = lazy(() => import("../features/sales/pages/SalesInvoicesPage"));
-const ARReceiptsPage       = lazy(() => import("../features/ar/pages/ARReceiptsPage"));
-const SalesReturnsPage     = lazy(() => import("../features/sales/pages/SalesReturnsPage"));
-const CustomersPage        = lazy(() => import("../features/partners/pages/CustomersPage"));
-
-// ── Pembelian (Purchasing) ─────────────────────────────────
-const PurchaseOrdersPage   = lazy(() => import("../features/purchasing/pages/PurchaseOrdersPage"));
-const GoodsReceiptPage     = lazy(() => import("../features/purchasing/pages/GoodsReceiptPage"));
-const SupplierInvoicesPage = lazy(() => import("../features/purchasing/pages/SupplierInvoicesPage"));
-const APPaymentsPage       = lazy(() => import("../features/ap/pages/APPaymentsPage"));
-const PurchaseReturnsPage  = lazy(() => import("../features/purchasing/pages/PurchaseReturnsPage"));
-const SuppliersPage        = lazy(() => import("../features/partners/pages/SuppliersPage"));
-
-// ── Inventori ──────────────────────────────────────────────
-const ProductsPage           = lazy(() => import("../features/inventory/pages/ProductsPage"));
-const ProductDetailPage      = lazy(() => import("../features/inventory/pages/ProductDetailPage"));
-const CategoriesPage         = lazy(() => import("../features/inventory/pages/CategoriesPage"));
-const StockWarehousePage     = lazy(() => import("../features/inventory/pages/StockWarehousePage"));
-const StockMovementsPage     = lazy(() => import("../features/inventory/pages/StockMovementsPage"));
-const StockOpnamePage        = lazy(() => import("../features/inventory/pages/StockOpnamePage"));
-const InventoryValuationPage = lazy(() => import("../features/inventory/pages/InventoryValuationPage"));
-
-// ── Keuangan (Accounting) ──────────────────────────────────
-const CoAPage              = lazy(() => import("../features/accounting/pages/CoAPage"));
-const JournalsPage         = lazy(() => import("../features/accounting/pages/JournalsPage"));
-const JournalDetailPage    = lazy(() => import("../features/accounting/pages/JournalDetailPage"));
-const GeneralLedgerPage    = lazy(() => import("../features/accounting/pages/GeneralLedgerPage"));
-const TrialBalancePage     = lazy(() => import("../features/accounting/pages/TrialBalancePage"));
-const CashBankPage         = lazy(() => import("../features/accounting/pages/CashBankPage"));
-const BankReconPage        = lazy(() => import("../features/accounting/pages/BankReconPage"));
-const ReceivablesPage      = lazy(() => import("../features/accounting/pages/ReceivablesPage"));
-const PayablesPage         = lazy(() => import("../features/accounting/pages/PayablesPage"));
-
-// ── Laporan (Reports) ──────────────────────────────────────
-const ReportSalesPage      = lazy(() => import("../features/reports/pages/ReportSalesPage"));
-const ReportPurchasingPage = lazy(() => import("../features/reports/pages/ReportPurchasingPage"));
-const ReportInventoryPage  = lazy(() => import("../features/reports/pages/ReportInventoryPage"));
-const BalanceSheetPage     = lazy(() => import("../features/reports/pages/BalanceSheetPage"));
-const ProfitLossPage       = lazy(() => import("../features/reports/pages/ProfitLossPage"));
-const CashFlowPage         = lazy(() => import("../features/reports/pages/CashFlowPage"));
-const TaxReportPage        = lazy(() => import("../features/reports/pages/TaxReportPage"));
-
-// ── Pengaturan (Settings) ──────────────────────────────────
-const CompanyProfilePage   = lazy(() => import("../features/settings/pages/CompanyProfilePage"));
-const FiscalYearPage       = lazy(() => import("../features/settings/pages/FiscalYearPage"));
-const TaxConfigPage        = lazy(() => import("../features/settings/pages/TaxConfigPage"));
-const NumberSequencesPage  = lazy(() => import("../features/settings/pages/NumberSequencesPage"));
-const RolesAccessPage      = lazy(() => import("../features/settings/pages/RolesAccessPage"));
-const UserManagementPage   = lazy(() => import("../features/settings/pages/UserManagementPage"));
 
 // ── Errors ─────────────────────────────────────────────────
 const NotFoundPage         = lazy(() => import("../features/errors/NotFoundPage"));
