@@ -18,16 +18,19 @@ pnpm-debug.log*
 Thumbs.db
 
 # -----------------------------
-# Python / Django (future backend)
+# Python / Django (backend)
 # -----------------------------
-*.pyc
 __pycache__/
-backend_backup/
+*.pyc
+
 backend/__pycache__/
 backend/*.pyc
 backend/db.sqlite3
 backend/.env
 backend/.env.*
+
+# Backup folders
+backend_backup/
 
 # Virtual environments
 venv/
