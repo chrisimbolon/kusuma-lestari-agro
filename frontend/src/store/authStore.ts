@@ -1,26 +1,96 @@
+/**
+ * ╔═══════════════════════════════════════════════════════════════╗
+ * ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
+ * ║              src/store/authStore.ts                           ║
+ * ║                                                               ║
+ * ║  Security model:                                              ║
+ * ║  • accessToken  → memory only (Zustand, NOT persisted)       ║
+ * ║  • refreshToken → HttpOnly cookie (set by Django, JS-blind)  ║
+ * ║  • user profile → localStorage via persist (non-sensitive)   ║
+ * ║  • isAuthenticated → DERIVED from accessToken, never stored  ║
+ * ╚═══════════════════════════════════════════════════════════════╝
+ */
+
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import type { AuthUser } from "../types/auth";
+import { createJSONStorage, persist } from "zustand/middleware";
+
+// ── Types ──────────────────────────────────────────────────────
+export interface AuthUser {
+  id:        string;
+  email:     string;
+  full_name: string;
+  role:      "owner" | "admin" | "staff";
+  is_staff:  boolean;
+}
 
 interface AuthState {
+  // ── State ──────────────────────────────────────────────────
   user:            AuthUser | null;
-  accessToken:     string | null;
-  refreshToken:    string | null;
-  isAuthenticated: boolean;
-  setAuth:  (user: AuthUser, access: string, refresh: string) => void;
-  setToken: (access: string) => void;
-  logout:   () => void;
+  accessToken:     string | null;     // Memory only — never persisted
+
+  // ── Derived (computed) ─────────────────────────────────────
+  isAuthenticated: boolean;           // Derived from accessToken
+
+  // ── Actions ────────────────────────────────────────────────
+  setAuth:    (user: AuthUser, accessToken: string) => void;
+  setToken:   (accessToken: string) => void;
+  clearToken: () => void;             // Called when access token expires
+  logout:     () => void;             // Full reset — also hits /api/auth/logout/
 }
+
+// ══════════════════════════════════════════════════════════════
+//  STORE
+// ══════════════════════════════════════════════════════════════
 
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      user: null, accessToken: null, refreshToken: null, isAuthenticated: false,
-      setAuth: (user, accessToken, refreshToken) =>
-        set({ user, accessToken, refreshToken, isAuthenticated: true }),
-      setToken: (accessToken) => set({ accessToken }),
-      logout: () => set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false }),
+      // ── Initial state ─────────────────────────────────────
+      user:            null,
+      accessToken:     null,
+      isAuthenticated: false,
+
+      // ── setAuth: called after successful login ─────────────
+      // Only receives accessToken — refresh lives in HttpOnly cookie
+      setAuth: (user, accessToken) =>
+        set({
+          user,
+          accessToken,
+          isAuthenticated: true,
+        }),
+
+      // ── setToken: called after silent token refresh ────────
+      setToken: (accessToken) =>
+        set((state) => ({
+          accessToken,
+          isAuthenticated: true,
+          user: state.user,           // preserve existing user
+        })),
+
+      // ── clearToken: access expired, awaiting refresh ───────
+      clearToken: () =>
+        set({ accessToken: null, isAuthenticated: false }),
+
+      // ── logout: full session reset ─────────────────────────
+      logout: () =>
+        set({
+          user:            null,
+          accessToken:     null,
+          isAuthenticated: false,
+        }),
     }),
-    { name: "kla-auth", partialize: (s) => ({ user: s.user, accessToken: s.accessToken, refreshToken: s.refreshToken, isAuthenticated: s.isAuthenticated }) }
+
+    {
+      name: "kla-auth",
+      storage: createJSONStorage(() => localStorage),
+
+      // ⚠️  CRITICAL: Only persist the user PROFILE.
+      //     accessToken is memory-only — lost on tab close.
+      //     On next visit, /api/auth/token/refresh/ re-issues
+      //     a new access token using the HttpOnly cookie silently.
+      partialize: (state) => ({
+        user: state.user,
+      }),
+    }
   )
 );
