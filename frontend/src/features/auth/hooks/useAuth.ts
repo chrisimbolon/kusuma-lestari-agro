@@ -6,6 +6,7 @@
  * ║  Single hook that components use for all auth operations.    ║
  * ║  Components should NEVER import useAuthStore directly —      ║
  * ║  always go through this hook.                                ║
+ * ║  THIS IS BRAND NEW CONCEPT, BOOTSTRAP IN auth views ?                                                              ║    
  * ╚═══════════════════════════════════════════════════════════════╝
  */
 
