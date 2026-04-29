@@ -3,7 +3,7 @@
 // ============================================================
 
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LOGO_SRC = "/Logo-KLA.png";
 
@@ -355,6 +355,10 @@ export default function LandingPage() {
           <a href="#produk"      className="kla-nav-link">Produk Organik</a>
           <a href="#tentang"     className="kla-nav-link">Tentang Kami</a>
           <a href="#distributor" className="kla-nav-link">Distributor</a>
+          <Link to="/gallery" className="kla-nav-link" style={{ fontWeight: 600 }}>
+          Gallery
+          </Link>
+
           <button className="kla-btn-login" onClick={() => navigate("/login")}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10,17 15,12 10,7"/><line x1="15" y1="12" x2="3" y2="12"/>
