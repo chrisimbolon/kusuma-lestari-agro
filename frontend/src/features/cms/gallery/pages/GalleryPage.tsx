@@ -14,14 +14,14 @@
  */
 
 import {
-  useState,
-  useRef,
   useCallback,
+  useRef,
+  useState,
   type ChangeEvent,
   type DragEvent,
 } from "react";
-import { useGallery }      from "../hooks/useGallery";
 import type { GalleryImage, GalleryMutatePayload } from "../api/galleryApi";
+import { useGallery } from "../hooks/useGallery";
 
 // ─────────────────────────────────────────────────────────────
 //  DESIGN TOKENS
@@ -1181,7 +1181,7 @@ export default function GalleryPage() {
               >
                 {search || filter !== "all"
                   ? "Coba ubah filter atau kata kunci pencarian."
-                  : "Klik "Tambah Foto" untuk mulai mengisi galeri."}
+                  : 'Klik "Tambah Foto" untuk mulai mengisi galeri.'}
               </p>
             </div>
           )}
