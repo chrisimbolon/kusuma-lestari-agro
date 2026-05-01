@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
-import { useLogin } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const login = useLogin();
+  const { login } = useAuth(); 
   const onSubmit = (e: React.FormEvent) => { e.preventDefault(); login.mutate({ username, password }); };
   return (
     <form onSubmit={onSubmit} style={{ display:"flex", flexDirection:"column", gap:16 }}>
