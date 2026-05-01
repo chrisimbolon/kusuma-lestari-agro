@@ -1,3 +1,4 @@
+//src/components/layout/Sidebar.tsx
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { NavLeaf, UserRole } from "../../config/navigation.config";
