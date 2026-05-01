@@ -10,12 +10,11 @@
  * ║  • Auto-logout on refresh failure                            ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
-
-import axios, {
-  AxiosError,
+import type {
   AxiosRequestConfig,
   InternalAxiosRequestConfig,
 } from "axios";
+import axios, { AxiosError } from "axios";
 import { useAuthStore } from "../store/authStore";
 
 // ── Config ─────────────────────────────────────────────────────
