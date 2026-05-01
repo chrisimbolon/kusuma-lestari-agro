@@ -1,7 +1,7 @@
 // src/features/auth/pages/LoginPage.tsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useLogin } from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const LOGO_SRC = "/Logo-KLA.png";
 
@@ -97,7 +97,7 @@ function Field({ label, id, type="text", placeholder, value, onChange, icon, rig
 //  LOGIN PAGE
 // ════════════════════════════════════════════════════════
 export default function LoginPage() {
-  const login = useLogin();
+  const login = useAuth();
   const [email, setEmail]     = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw]   = useState(false);
