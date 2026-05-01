@@ -107,7 +107,7 @@ class LoginView(APIView):
                 "user": {
                     "id":         str(user.id),
                     "email":      user.email,
-                    "full_name":  user.get_full_name(),
+                    "full_name":  user.full_name,
                     "role":       getattr(user, "role", "staff"),
                     "is_staff":   user.is_staff,
                 },
@@ -216,7 +216,7 @@ class MeView(APIView):
             {
                 "id":        str(user.id),
                 "email":     user.email,
-                "full_name": user.get_full_name(),
+                "full_name": user.full_name,
                 "role":      getattr(user, "role", "staff"),
                 "is_staff":  user.is_staff,
             }
