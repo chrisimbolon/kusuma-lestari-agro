@@ -1,39 +1,24 @@
-import Button from "../ui/Button"
-import Container from "../ui/Container"
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <header className="border-b bg-white">
-      <Container>
-        <div className="flex items-center justify-between py-4">
+    <header style={{ borderBottom: "1px solid #ccc", padding: "12px 24px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-          {/* Brand */}
-          <div className="font-bold text-lg text-green-700">
-            Kusuma Lestari Agro
-          </div>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex gap-8 text-sm text-gray-600">
-            <a href="#" className="hover:text-green-600">
-              Produk Organik
-            </a>
-
-            <a href="#" className="hover:text-green-600">
-              Tentang Kami
-            </a>
-
-            <a href="#" className="hover:text-green-600">
-              Distributor
-            </a>
-          </nav>
-
-          {/* Internal System Login */}
-          <Button variant="secondary">
-            Login
-          </Button>
-
+        <div style={{ fontWeight: "bold" }}>
+          Kusuma Lestari Agro
         </div>
-      </Container>
+
+        <div style={{ display: "flex", gap: 20 }}>
+          <Link to="/">Produk Organik</Link>
+          <Link to="/">Tentang Kami</Link>
+          <Link to="/">Distributor</Link>
+          <Link to="/gallery" style={{ color: "red", fontWeight: "bold" }}>
+            Gallery
+          </Link>
+        </div>
+
+      </div>
     </header>
-  )
+  );
 }
