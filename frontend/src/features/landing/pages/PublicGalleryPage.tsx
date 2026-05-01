@@ -10,14 +10,14 @@
  * ╚═══════════════════════════════════════════════════════════════╝
  */
 
+import api from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import {
-    useCallback,
-    useEffect,
-    useRef,
-    useState
+  useCallback,
+  useEffect,
+  useRef,
+  useState
 } from "react";
-import api from "../../lib/axios";
 
 // ─────────────────────────────────────────────────────────────
 //  TYPES
