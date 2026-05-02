@@ -28,6 +28,8 @@ backend/*.pyc
 backend/db.sqlite3
 backend/.env
 backend/.env.*
+backend/.env.local
+backend/.env.production
 
 # Backup folders
 backend_backup/
