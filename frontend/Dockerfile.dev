@@ -1,0 +1,20 @@
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
+# ║         frontend/Dockerfile.dev  (local development only)    ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install deps first (cached layer — only rebuilds if package.json changes)
+COPY package*.json ./
+RUN npm ci
+
+# Copy source (overridden by volume mount in docker-compose)
+COPY . .
+
+EXPOSE 5173
+
+# --host exposes Vite to Docker network (required for container access)
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
