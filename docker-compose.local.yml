@@ -1,0 +1,87 @@
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
+# ║         docker-compose.yml  (local development)              ║
+# ║                                                               ║
+# ║  Services:                                                    ║
+# ║  • kla_db       — Dedicated PostgreSQL 16 for KLA            ║
+# ║  • kla_backend  — Django + Gunicorn                          ║
+# ║  • kla_frontend — React (Vite dev server)                    ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+services:
+
+  # ── Dedicated PostgreSQL for KLA ─────────────────────────────
+  kla_db:
+    image: postgres:16-alpine
+    container_name: kla_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       kla_db
+      POSTGRES_USER:     kla_user
+      POSTGRES_PASSWORD: kla_local_pass
+    volumes:
+      - kla_pgdata:/var/lib/postgresql/data
+      - ./backend/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5433:5432"     # 5433 on host to avoid clash with local PG
+    networks:
+      - kla-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kla_user -d kla_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── Django Backend ───────────────────────────────────────────
+  kla_backend:
+    build:
+      context:    ./backend
+      dockerfile: Dockerfile
+    container_name: kla_backend
+    restart: unless-stopped
+    env_file: ./backend/.env.local
+    volumes:
+      - ./backend:/app                        # live code reload
+      - kla_media:/app/media
+      - kla_static:/app/staticfiles
+    ports:
+      - "8000:8000"
+    networks:
+      - kla-network
+    depends_on:
+      kla_db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  # ── React Frontend ───────────────────────────────────────────
+  kla_frontend:
+    build:
+      context:    ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: kla_frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules               # preserve container node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - kla-network
+    environment:
+      VITE_API_URL: http://localhost:8000
+    depends_on:
+      - kla_backend
+
+volumes:
+  kla_pgdata:
+    name: kla_pgdata
+  kla_media:
+    name: kla_media
+  kla_static:
+    name: kla_static
+
+networks:
+  kla-network:
+    name: kla-network
