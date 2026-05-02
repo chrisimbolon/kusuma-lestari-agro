@@ -1,0 +1,71 @@
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
+# ║         docker-compose.prod.yml  (production)                ║
+# ║                                                               ║
+# ║  Services:                                                    ║
+# ║  • kla_db       — Dedicated PostgreSQL 16 for KLA            ║
+# ║  • kla_backend  — Django + Gunicorn                          ║
+# ║                                                               ║
+# ║  Frontend: React dist/ served by Caddy as static files       ║
+# ║  Network:  caddy-network shared with Caddy reverse proxy     ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+services:
+
+  # ── Dedicated PostgreSQL 16 for KLA ──────────────────────────
+  kla_db:
+    image: postgres:16-alpine
+    container_name: kla_db
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      POSTGRES_DB:       ${DB_NAME}
+      POSTGRES_USER:     ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - kla_pgdata:/var/lib/postgresql/data
+    networks:
+      - kla-internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Django Backend ───────────────────────────────────────────
+  kla_backend:
+    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/kla-backend:latest
+    container_name: kla_backend
+    restart: unless-stopped
+    env_file: .env.production
+    volumes:
+      - kla_media:/app/media
+      - kla_static:/app/staticfiles
+    networks:
+      - caddy-network    # reachable by Caddy for reverse proxy
+      - kla-internal     # reachable by kla_db
+    depends_on:
+      kla_db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/cms/gallery/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  kla_pgdata:
+    name: kla_pgdata
+  kla_media:
+    name: kla_media
+  kla_static:
+    name: kla_static
+
+networks:
+  caddy-network:
+    external: true
+    name: caddy-network
+  kla-internal:
+    name: kla-internal
