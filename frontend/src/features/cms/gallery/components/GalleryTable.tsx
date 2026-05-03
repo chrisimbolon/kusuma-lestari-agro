@@ -1,15 +1,20 @@
-// features/cms/components/GalleryTable.tsx
+/**
+ * src/features/cms/gallery/components/GalleryTable.tsx
+ *
+ * Fix: removed import from '../types/gallery.types' (file doesn't exist)
+ * Types are exported directly from galleryApi.ts as per our architecture.
+ */
 
-import { Gallery } from '../types/gallery.types'
+import type { GalleryImage } from "../api/galleryApi";
 
 interface Props {
-  data: Gallery[]
-  loading: boolean
-  onDelete: (id: string) => void
+  data:     GalleryImage[];
+  loading:  boolean;
+  onDelete: (id: string) => void;
 }
 
 export default function GalleryTable({ data, loading, onDelete }: Props) {
-  if (loading) return <div>Loading...</div>
+  if (loading) return <div>Loading...</div>;
 
   return (
     <table>
@@ -24,17 +29,15 @@ export default function GalleryTable({ data, loading, onDelete }: Props) {
         {data.map((item) => (
           <tr key={item.id}>
             <td>
-              <img src={item.imageUrl} width={80} />
+              <img src={item.image} width={80} alt={item.title} />
             </td>
             <td>{item.title}</td>
             <td>
-              <button onClick={() => onDelete(item.id)}>
-                Delete
-              </button>
+              <button onClick={() => onDelete(item.id)}>Delete</button>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
-  )
+  );
 }
