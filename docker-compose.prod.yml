@@ -35,7 +35,9 @@ services:
 
   # ── Django Backend ───────────────────────────────────────────
   kla_backend:
-    image: ghcr.io/chrisimbolon/kla-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: kla_backend
     restart: unless-stopped
     env_file: .env
