@@ -1,3 +1,4 @@
+// src/components/ui/Select.tsx
 import type { SelectHTMLAttributes } from "react";
 import type { SelectOption } from "../../types/common";
 interface Props extends SelectHTMLAttributes<HTMLSelectElement> { label?: string; error?: string; options: SelectOption[]; placeholder?: string; }
