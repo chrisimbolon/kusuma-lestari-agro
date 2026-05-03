@@ -68,6 +68,6 @@ volumes:
 networks:
   caddy-network:
     external: true
-    name: caddy-network
+    name: caddy-net
   kla-internal:
     name: kla-internal
