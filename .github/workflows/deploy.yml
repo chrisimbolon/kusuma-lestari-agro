@@ -49,6 +49,8 @@ jobs:
             "DB_HOST=kla_db" \
             "DB_PORT=5432" \
             "DJANGO_SETTINGS_MODULE=kla_project.settings" \
+            "SECURE_PROXY_SSL_HEADER=HTTP_X_FORWARDED_PROTO,https" \
+            "USE_X_FORWARDED_HOST=True" \
             > .env
 
       # ── 4. Set up SSH ────────────────────────────────────────
