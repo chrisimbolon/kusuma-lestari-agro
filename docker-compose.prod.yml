@@ -35,7 +35,7 @@ services:
 
   # ── Django Backend ───────────────────────────────────────────
   kla_backend:
-    image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/kla-backend:latest
+    image: image: ghcr.io/chrisimbolon/kla-backend:latest
     container_name: kla_backend
     restart: unless-stopped
     env_file: .env
