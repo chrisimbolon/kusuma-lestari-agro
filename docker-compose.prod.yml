@@ -4,10 +4,10 @@
 # ║                                                               ║
 # ║  Services:                                                    ║
 # ║  • kla_db       — Dedicated PostgreSQL 16 for KLA            ║
-# ║  • kla_backend  — Django + Gunicorn                          ║
+# ║  • kla_backend  — Django + Gunicorn (built on server)        ║
 # ║                                                               ║
 # ║  Frontend: React dist/ served by Caddy as static files       ║
-# ║  Network:  caddy-network shared with Caddy reverse proxy     ║
+# ║  Network:  eventhub_eventhub-net = Caddy's actual network    ║
 # ╚═══════════════════════════════════════════════════════════════╝
 
 services:
@@ -45,13 +45,15 @@ services:
       - kla_media:/app/media
       - kla_static:/app/staticfiles
     networks:
-      - caddy-network    # reachable by Caddy for reverse proxy
-      - kla-internal     # reachable by kla_db
+      - eventhub_eventhub-net    # ← Caddy's ACTUAL network (confirmed)
+      - kla-internal             # ← talks to kla_db
     depends_on:
       kla_db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/cms/gallery/"]
+      # Host header required — Django ALLOWED_HOSTS rejects requests without it
+      test: ["CMD", "curl", "-f", "-H", "Host: kusumaorganik.com",
+             "http://localhost:8000/api/cms/gallery/"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -66,8 +68,8 @@ volumes:
     name: kla_static
 
 networks:
-  caddy-network:
+  eventhub_eventhub-net:        # ← Caddy is on THIS network (not caddy-net)
     external: true
-    name: caddy-net
+    name: eventhub_eventhub-net
   kla-internal:
     name: kla-internal
