@@ -38,7 +38,7 @@ services:
     image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/kla-backend:latest
     container_name: kla_backend
     restart: unless-stopped
-    env_file: .env.production
+    env_file: .env
     volumes:
       - kla_media:/app/media
       - kla_static:/app/staticfiles
