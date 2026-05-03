@@ -54,7 +54,7 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
           minWidth:   0,
         }}
       >
-        <Topbar sidebarCollapsed={collapsed} />
+        <Topbar/>
         <main style={{ flex:1, padding:"24px 28px", minWidth:0 }}>
           {children ?? <Outlet />}
         </main>
