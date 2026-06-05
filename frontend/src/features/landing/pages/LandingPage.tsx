@@ -912,7 +912,7 @@ export default function LandingPage() {
             </div>
             {[
               { title: "Produk",     links: ["Pupuk Granul","Pupuk Cair","Kompos Premium","Paket Tanam"] },
-              { title: "Perusahaan", links: ["Tentang Kami","Sertifikasi","Blog Pertanian","Karir"] },
+              { title: "Perusahaan", links: ["Tentang Kami","Sertifikasi","Blog Pertanian"] },
               { title: "Kontak",     links: ["info@kla.co.id","+62 21 1234 5678","Jakarta, Indonesia"] },
             ].map((col) => (
               <div key={col.title}>
