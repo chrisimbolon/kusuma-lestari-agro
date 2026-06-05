@@ -410,7 +410,7 @@ export default function LandingPage() {
           </div>
           <div className="products-grid">
             {[
-              { icon: "🌱", name: "Pupuk Organik Granul",  desc: "Formula granul slow-release untuk pertumbuhan optimal sepanjang musim tanam.",     tag: "Best Seller"  },
+              { icon: "🌱", name: "Pupuk Organik",  desc: "Formula organik untuk pertumbuhan optimal sepanjang musim tanam.",     tag: "Best Seller"  },
               { icon: "💧", name: "Pupuk Cair Organik",    desc: "Larutan nutrisi konsentrat langsung diserap akar untuk hasil cepat terlihat.",       tag: "Terlaris"     },
               { icon: "🌿", name: "Pupuk Kompos Premium",  desc: "Kompos matang dari bahan organik pilihan, memperbaiki struktur tanah secara alami.", tag: "Organik 100%" },
             ].map((p) => (
