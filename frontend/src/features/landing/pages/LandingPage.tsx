@@ -426,36 +426,357 @@ export default function LandingPage() {
       </section>
 
       {/* ── ABOUT ── */}
-      <section id="tentang" className="section-pad" style={{ background: "#f8faf6" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div className="about-grid">
+      {/* ── ABOUT / COMPANY PROFILE ── */}
+<section
+  id="tentang"
+  className="section-pad"
+  style={{ background: "#f8faf6" }}
+>
+  <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <div className="about-grid">
+
+      {/* LEFT COLUMN */}
+      <div>
+        <div
+          style={{
+            fontFamily: "'IBM Plex Mono',monospace",
+            fontSize: 11,
+            color: "#c8952a",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            marginBottom: 12,
+          }}
+        >
+          Tentang Kami
+        </div>
+
+        <h2
+          style={{
+            fontFamily: "'DM Serif Display',serif",
+            fontSize: "clamp(26px,3.2vw,40px)",
+            fontWeight: 400,
+            color: "#111",
+            lineHeight: 1.25,
+            marginBottom: 20,
+          }}
+        >
+          Lebih dari 15 Tahun
+          <br />
+          <em style={{ color: "#1a5a1a" }}>Melayani Pertanian</em>
+          <br />
+          Indonesia
+        </h2>
+
+        <p
+          style={{
+            fontSize: 15,
+            color: "#4b5563",
+            lineHeight: 1.9,
+            marginBottom: 16,
+          }}
+        >
+          PT. Kusuma Lestari Agro hadir sebagai perusahaan yang
+          berkomitmen menyediakan solusi pertanian organik yang efektif,
+          berkelanjutan, dan terjangkau bagi petani Indonesia.
+        </p>
+
+        <p
+          style={{
+            fontSize: 15,
+            color: "#4b5563",
+            lineHeight: 1.9,
+            marginBottom: 16,
+          }}
+        >
+          Berbasis di Kabupaten Batanghari, Provinsi Jambi,
+          kami melayani kebutuhan petani, kelompok tani,
+          distributor, serta pelaku usaha pertanian di berbagai wilayah Indonesia.
+        </p>
+
+        <p
+          style={{
+            fontSize: 15,
+            color: "#4b5563",
+            lineHeight: 1.9,
+          }}
+        >
+          Produk kami telah digunakan dan diuji di lapangan dengan
+          fokus pada peningkatan produktivitas pertanian,
+          kesehatan tanah, dan keberlanjutan lingkungan.
+        </p>
+
+        {/* LEGAL CARD */}
+        <div
+          style={{
+            marginTop: 32,
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
+            borderRadius: 18,
+            padding: 24,
+            boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'IBM Plex Mono',monospace",
+              fontSize: 11,
+              color: "#2d7a2d",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              marginBottom: 18,
+              fontWeight: 600,
+            }}
+          >
+            Legalitas Perusahaan
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gap: 16,
+            }}
+          >
             <div>
-              <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 11, color: "#c8952a", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>Tentang Kami</div>
-              <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(26px,3.2vw,40px)", fontWeight: 400, color: "#111", lineHeight: 1.25, marginBottom: 20 }}>
-                Lebih dari 15 Tahun<br /><em style={{ color: "#1a5a1a" }}>Melayani Pertanian</em><br />Indonesia
-              </h2>
-              <p style={{ fontSize: 15, color: "#4b5563", lineHeight: 1.8, marginBottom: 14 }}>PT. Kusuma Lestari Agro berdiri dengan komitmen menghadirkan solusi pertanian organik yang terjangkau, efektif, dan berkelanjutan untuk petani Indonesia.</p>
-              <p style={{ fontSize: 15, color: "#4b5563", lineHeight: 1.8 }}>Produk kami telah teruji di lapangan oleh ribuan petani dari Sabang sampai Merauke.</p>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#6b7280",
+                  marginBottom: 4,
+                }}
+              >
+                Nomor AHU
+              </div>
+              <div
+                style={{
+                  fontWeight: 600,
+                  color: "#111",
+                }}
+              >
+                AHU-A005122.AH.01.31.Tahun 2026
+              </div>
             </div>
+
             <div>
-              {[
-                { icon: "🔬", title: "Teruji Secara Ilmiah", desc: "Formulasi dikembangkan bersama peneliti pertanian dan diuji di 8 provinsi." },
-                { icon: "🌍", title: "Ramah Lingkungan",     desc: "Bahan baku 100% organik, tidak merusak ekosistem tanah dan air." },
-                { icon: "🤝", title: "Dukungan Penuh",       desc: "Tim agronomi siap membantu petani dari penanaman hingga panen." },
-                { icon: "📜", title: "Bersertifikat Resmi",  desc: "Produk terdaftar dan bersertifikasi oleh Kementerian Pertanian RI." },
-              ].map((f) => (
-                <div key={f.title} className="feature-row">
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: "#fff", border: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>{f.icon}</div>
-                  <div>
-                    <div style={{ fontWeight: 600, color: "#111", fontSize: 14, marginBottom: 3 }}>{f.title}</div>
-                    <div style={{ color: "#6b7280", fontSize: 14, lineHeight: 1.6 }}>{f.desc}</div>
-                  </div>
-                </div>
-              ))}
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#6b7280",
+                  marginBottom: 4,
+                }}
+              >
+                Tanggal Pengesahan
+              </div>
+              <div
+                style={{
+                  fontWeight: 600,
+                  color: "#111",
+                }}
+              >
+                21 Mei 2026
+              </div>
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#6b7280",
+                  marginBottom: 4,
+                }}
+              >
+                NPWP Badan
+              </div>
+              <div
+                style={{
+                  fontWeight: 600,
+                  color: "#111",
+                }}
+              >
+                0615053956335000
+              </div>
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#6b7280",
+                  marginBottom: 4,
+                }}
+              >
+                Nomor Induk Berusaha (NIB)
+              </div>
+              <div
+                style={{
+                  fontWeight: 600,
+                  color: "#111",
+                }}
+              >
+                0111220026616
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* RIGHT COLUMN */}
+      <div>
+
+        {[
+          {
+            icon: "📍",
+            title: "Alamat Perusahaan",
+            desc:
+              "Desa Pematang Gadung RT 001, Kecamatan Mersam, Kabupaten Batanghari, Provinsi Jambi 36654",
+          },
+          {
+            icon: "✉️",
+            title: "Email Center",
+            desc:
+              "info@kusumaorganik.com",
+          },
+          {
+            icon: "📞",
+            title: "Kontak Center",
+            desc:
+              "+62 xxx xxxx xxxx",
+          },
+          {
+            icon: "🏢",
+            title: "Legalitas Terdaftar",
+            desc:
+              "Perusahaan telah memiliki AHU, NPWP Badan, dan NIB yang sah sesuai ketentuan yang berlaku.",
+          },
+        ].map((item) => (
+          <div
+            key={item.title}
+            className="feature-row"
+          >
+            <div
+              style={{
+                width: 46,
+                height: 46,
+                borderRadius: 12,
+                background: "#fff",
+                border: "1px solid #e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 20,
+                flexShrink: 0,
+              }}
+            >
+              {item.icon}
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontWeight: 700,
+                  color: "#111",
+                  marginBottom: 4,
+                }}
+              >
+                {item.title}
+              </div>
+
+              <div
+                style={{
+                  color: "#6b7280",
+                  lineHeight: 1.7,
+                  fontSize: 14,
+                }}
+              >
+                {item.desc}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* SOCIAL MEDIA */}
+        <div
+          style={{
+            marginTop: 32,
+            background: "#ffffff",
+            borderRadius: 18,
+            border: "1px solid #e5e7eb",
+            padding: 24,
+            boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'IBM Plex Mono',monospace",
+              fontSize: 11,
+              color: "#2d7a2d",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              marginBottom: 18,
+              fontWeight: 600,
+            }}
+          >
+            Media Sosial Resmi
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gap: 12,
+            }}
+          >
+            <a
+              href="#"
+              target="_blank"
+              style={{
+                color: "#111",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              📘 Facebook
+            </a>
+
+            <a
+              href="#"
+              target="_blank"
+              style={{
+                color: "#111",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              📸 Instagram
+            </a>
+
+            <a
+              href="#"
+              target="_blank"
+              style={{
+                color: "#111",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              ▶️ YouTube
+            </a>
+
+            <a
+              href="#"
+              target="_blank"
+              style={{
+                color: "#111",
+                textDecoration: "none",
+                fontWeight: 500,
+              }}
+            >
+              🎵 TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ── DISTRIBUTOR ── */}
       <section id="distributor" className="section-pad" style={{ background: "#1a3a12", textAlign: "center", position: "relative", overflow: "hidden" }}>
