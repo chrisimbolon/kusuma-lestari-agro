@@ -913,7 +913,7 @@ export default function LandingPage() {
             {[
               { title: "Produk",     links: ["Pupuk Granul","Pupuk Cair","Kompos Premium","Paket Tanam"] },
               { title: "Perusahaan", links: ["Tentang Kami","Sertifikasi","Blog Pertanian"] },
-              { title: "Kontak",     links: ["info@kla.co.id","+62 21 1234 5678","Jakarta, Indonesia"] },
+              { title: "Kontak",     links: ["info@kusumaorganik.com","+62 21 1234 5678","Jakarta, Indonesia"] },
             ].map((col) => (
               <div key={col.title}>
                 <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7ab648", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14, fontWeight: 600 }}>{col.title}</div>
