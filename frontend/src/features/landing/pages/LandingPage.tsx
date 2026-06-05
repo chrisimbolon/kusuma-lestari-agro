@@ -7,8 +7,15 @@
  * ║  Navbar extracted to src/components/common/Navbar.tsx        ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
+import { ArrowUpRight } from "lucide-react";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/common/Navbar";
 
@@ -171,6 +178,36 @@ function HeroCarousel() {
   );
 }
 
+const SOCIAL_MEDIA = [
+  {
+    name: "Facebook",
+    description: "Komunitas & Informasi",
+    url: "https://facebook.com/kla",
+    icon: FaFacebookF,
+    bg: "#eff6ff",
+  },
+  {
+    name: "Instagram",
+    description: "Foto & Aktivitas",
+    url: "https://instagram.com/kla",
+    icon: FaInstagram,
+    bg: "#fff1f7",
+  },
+  {
+    name: "YouTube",
+    description: "Video Edukasi",
+    url: "https://youtube.com/@kla",
+    icon: FaYoutube,
+    bg: "#fef2f2",
+  },
+  {
+    name: "TikTok",
+    description: "Konten Singkat",
+    url: "https://tiktok.com/@kla",
+    icon: FaTiktok,
+    bg: "#f8fafc",
+  },
+];
 // ─────────────────────────────────────────────────────────────
 //  LANDING PAGE
 // ─────────────────────────────────────────────────────────────
@@ -699,10 +736,10 @@ export default function LandingPage() {
   style={{
     marginTop: 32,
     background: "#ffffff",
-    borderRadius: 18,
+    borderRadius: 20,
     border: "1px solid #e5e7eb",
-    padding: 24,
-    boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+    padding: 28,
+    boxShadow: "0 10px 35px rgba(0,0,0,0.05)",
   }}
 >
   <div
@@ -710,170 +747,151 @@ export default function LandingPage() {
       fontFamily: "'IBM Plex Mono', monospace",
       fontSize: 11,
       color: "#2d7a2d",
-      letterSpacing: "0.1em",
+      letterSpacing: "0.12em",
       textTransform: "uppercase",
-      marginBottom: 10,
+      marginBottom: 12,
       fontWeight: 600,
     }}
   >
     Media Sosial Resmi
   </div>
 
-  <div
+  <h3
     style={{
-      color: "#6b7280",
-      fontSize: 14,
-      lineHeight: 1.7,
-      marginBottom: 20,
+      fontFamily: "'DM Serif Display', serif",
+      fontSize: 30,
+      lineHeight: 1.2,
+      color: "#111827",
+      marginBottom: 10,
+      fontWeight: 400,
     }}
   >
-    Ikuti aktivitas, edukasi pertanian, dan informasi produk terbaru
-    PT. Kusuma Lestari Agro melalui kanal resmi kami.
-  </div>
+    Tetap Terhubung
+  </h3>
+
+  <p
+    style={{
+      color: "#6b7280",
+      fontSize: 15,
+      lineHeight: 1.8,
+      marginBottom: 24,
+    }}
+  >
+    Ikuti aktivitas, edukasi pertanian, informasi produk terbaru,
+    dan perkembangan PT. Kusuma Lestari Agro melalui kanal resmi kami.
+  </p>
 
   <div
     style={{
       display: "grid",
-      gridTemplateColumns: "repeat(2, 1fr)",
-      gap: 14,
+      gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+      gap: 16,
     }}
   >
+    {SOCIAL_MEDIA.map((social) => {
+      const Icon = social.icon;
 
-    {/* FACEBOOK */}
-    <a
-      href="#"
-      target="_blank"
-      rel="noreferrer"
-      style={{
-        textDecoration: "none",
-        border: "1px solid #e5e7eb",
-        borderRadius: 14,
-        padding: 16,
-        background: "#f8fafc",
-        transition: "all .2s ease",
-      }}
-    >
-      <div style={{ fontSize: 28, marginBottom: 8 }}>📘</div>
-      <div
-        style={{
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: 4,
-        }}
-      >
-        Facebook
-      </div>
-      <div
-        style={{
-          fontSize: 13,
-          color: "#6b7280",
-        }}
-      >
-        Komunitas & Informasi
-      </div>
-    </a>
+      return (
+        <a
+          key={social.name}
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            textDecoration: "none",
+            border: "1px solid #e5e7eb",
+            borderRadius: 16,
+            background: social.bg,
+            padding: 18,
+            display: "flex",
+            flexDirection: "column",
+            gap: 14,
+            transition: "all 0.25s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform =
+              "translateY(-4px)";
+            e.currentTarget.style.boxShadow =
+              "0 14px 30px rgba(0,0,0,0.08)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform =
+              "translateY(0)";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 14,
+                background: "#ffffff",
+                border: "1px solid rgba(0,0,0,0.05)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Icon
+                size={24}
+                color="#1a5a1a"
+              />
+            </div>
 
-    {/* INSTAGRAM */}
-    <a
-      href="#"
-      target="_blank"
-      rel="noreferrer"
-      style={{
-        textDecoration: "none",
-        border: "1px solid #e5e7eb",
-        borderRadius: 14,
-        padding: 16,
-        background: "#fdf8fa",
-      }}
-    >
-      <div style={{ fontSize: 28, marginBottom: 8 }}>📸</div>
-      <div
-        style={{
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: 4,
-        }}
-      >
-        Instagram
-      </div>
-      <div
-        style={{
-          fontSize: 13,
-          color: "#6b7280",
-        }}
-      >
-        Foto & Aktivitas
-      </div>
-    </a>
+            <ArrowUpRight
+              size={18}
+              color="#6b7280"
+            />
+          </div>
 
-    {/* YOUTUBE */}
-    <a
-      href="#"
-      target="_blank"
-      rel="noreferrer"
-      style={{
-        textDecoration: "none",
-        border: "1px solid #e5e7eb",
-        borderRadius: 14,
-        padding: 16,
-        background: "#fff9f9",
-      }}
-    >
-      <div style={{ fontSize: 28, marginBottom: 8 }}>▶️</div>
-      <div
-        style={{
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: 4,
-        }}
-      >
-        YouTube
-      </div>
-      <div
-        style={{
-          fontSize: 13,
-          color: "#6b7280",
-        }}
-      >
-        Video Edukasi
-      </div>
-    </a>
+          <div>
+            <div
+              style={{
+                fontSize: 18,
+                fontWeight: 700,
+                color: "#111827",
+                marginBottom: 4,
+              }}
+            >
+              {social.name}
+            </div>
 
-    {/* TIKTOK */}
-    <a
-      href="#"
-      target="_blank"
-      rel="noreferrer"
-      style={{
-        textDecoration: "none",
-        border: "1px solid #e5e7eb",
-        borderRadius: 14,
-        padding: 16,
-        background: "#fafafa",
-      }}
-    >
-      <div style={{ fontSize: 28, marginBottom: 8 }}>🎵</div>
-      <div
-        style={{
-          fontWeight: 700,
-          color: "#111",
-          marginBottom: 4,
-        }}
-      >
-        TikTok
-      </div>
-      <div
-        style={{
-          fontSize: 13,
-          color: "#6b7280",
-        }}
-      >
-        Konten Singkat
-      </div>
-    </a>
+            <div
+              style={{
+                fontSize: 14,
+                color: "#6b7280",
+                lineHeight: 1.6,
+              }}
+            >
+              {social.description}
+            </div>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+
+  <div
+    style={{
+      marginTop: 24,
+      paddingTop: 18,
+      borderTop: "1px solid #eef2f7",
+      fontSize: 13,
+      color: "#6b7280",
+      lineHeight: 1.7,
+    }}
+  >
+    Informasi resmi PT. Kusuma Lestari Agro hanya dipublikasikan
+    melalui kanal media sosial yang tercantum di atas.
   </div>
 </div>
-
       </div>
     </div>
   </div>
