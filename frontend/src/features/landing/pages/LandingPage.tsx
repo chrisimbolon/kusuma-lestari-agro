@@ -412,7 +412,7 @@ export default function LandingPage() {
             {[
               { icon: "🌱", name: "Pupuk Organik",  desc: "Formula organik untuk pertumbuhan optimal sepanjang musim tanam.",     tag: "Best Seller"  },
               { icon: "💧", name: "Pupuk Cair Organik",    desc: "Larutan nutrisi konsentrat langsung diserap akar untuk hasil cepat terlihat.",       tag: "Terlaris"     },
-              { icon: "🌿", name: "Pupuk Kompos Premium",  desc: "Kompos matang dari bahan organik pilihan, memperbaiki struktur tanah secara alami.", tag: "Organik 100%" },
+              { icon: "🌿", name: "Pupuk  KCL Plus",  desc: "KCL Plus adalah pupuk kalium berkualitas tinggi yang diformulasikan untuk memenuhi kebutuhan unsur hara kalium tanaman secara optimal.", tag: "Organik 100%" },
             ].map((p) => (
               <div key={p.name} className="product-card">
                 <div style={{ fontSize: 32, marginBottom: 14 }}>{p.icon}</div>
