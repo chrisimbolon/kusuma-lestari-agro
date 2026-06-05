@@ -694,85 +694,186 @@ export default function LandingPage() {
         ))}
 
         {/* SOCIAL MEDIA */}
-        <div
-          style={{
-            marginTop: 32,
-            background: "#ffffff",
-            borderRadius: 18,
-            border: "1px solid #e5e7eb",
-            padding: 24,
-            boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'IBM Plex Mono',monospace",
-              fontSize: 11,
-              color: "#2d7a2d",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginBottom: 18,
-              fontWeight: 600,
-            }}
-          >
-            Media Sosial Resmi
-          </div>
+        {/* SOCIAL MEDIA */}
+<div
+  style={{
+    marginTop: 32,
+    background: "#ffffff",
+    borderRadius: 18,
+    border: "1px solid #e5e7eb",
+    padding: 24,
+    boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+  }}
+>
+  <div
+    style={{
+      fontFamily: "'IBM Plex Mono', monospace",
+      fontSize: 11,
+      color: "#2d7a2d",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase",
+      marginBottom: 10,
+      fontWeight: 600,
+    }}
+  >
+    Media Sosial Resmi
+  </div>
 
-          <div
-            style={{
-              display: "grid",
-              gap: 12,
-            }}
-          >
-            <a
-              href="#"
-              target="_blank"
-              style={{
-                color: "#111",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              📘 Facebook
-            </a>
+  <div
+    style={{
+      color: "#6b7280",
+      fontSize: 14,
+      lineHeight: 1.7,
+      marginBottom: 20,
+    }}
+  >
+    Ikuti aktivitas, edukasi pertanian, dan informasi produk terbaru
+    PT. Kusuma Lestari Agro melalui kanal resmi kami.
+  </div>
 
-            <a
-              href="#"
-              target="_blank"
-              style={{
-                color: "#111",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              📸 Instagram
-            </a>
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: 14,
+    }}
+  >
 
-            <a
-              href="#"
-              target="_blank"
-              style={{
-                color: "#111",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              ▶️ YouTube
-            </a>
+    {/* FACEBOOK */}
+    <a
+      href="#"
+      target="_blank"
+      rel="noreferrer"
+      style={{
+        textDecoration: "none",
+        border: "1px solid #e5e7eb",
+        borderRadius: 14,
+        padding: 16,
+        background: "#f8fafc",
+        transition: "all .2s ease",
+      }}
+    >
+      <div style={{ fontSize: 28, marginBottom: 8 }}>📘</div>
+      <div
+        style={{
+          fontWeight: 700,
+          color: "#111",
+          marginBottom: 4,
+        }}
+      >
+        Facebook
+      </div>
+      <div
+        style={{
+          fontSize: 13,
+          color: "#6b7280",
+        }}
+      >
+        Komunitas & Informasi
+      </div>
+    </a>
 
-            <a
-              href="#"
-              target="_blank"
-              style={{
-                color: "#111",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              🎵 TikTok
-            </a>
-          </div>
-        </div>
+    {/* INSTAGRAM */}
+    <a
+      href="#"
+      target="_blank"
+      rel="noreferrer"
+      style={{
+        textDecoration: "none",
+        border: "1px solid #e5e7eb",
+        borderRadius: 14,
+        padding: 16,
+        background: "#fdf8fa",
+      }}
+    >
+      <div style={{ fontSize: 28, marginBottom: 8 }}>📸</div>
+      <div
+        style={{
+          fontWeight: 700,
+          color: "#111",
+          marginBottom: 4,
+        }}
+      >
+        Instagram
+      </div>
+      <div
+        style={{
+          fontSize: 13,
+          color: "#6b7280",
+        }}
+      >
+        Foto & Aktivitas
+      </div>
+    </a>
+
+    {/* YOUTUBE */}
+    <a
+      href="#"
+      target="_blank"
+      rel="noreferrer"
+      style={{
+        textDecoration: "none",
+        border: "1px solid #e5e7eb",
+        borderRadius: 14,
+        padding: 16,
+        background: "#fff9f9",
+      }}
+    >
+      <div style={{ fontSize: 28, marginBottom: 8 }}>▶️</div>
+      <div
+        style={{
+          fontWeight: 700,
+          color: "#111",
+          marginBottom: 4,
+        }}
+      >
+        YouTube
+      </div>
+      <div
+        style={{
+          fontSize: 13,
+          color: "#6b7280",
+        }}
+      >
+        Video Edukasi
+      </div>
+    </a>
+
+    {/* TIKTOK */}
+    <a
+      href="#"
+      target="_blank"
+      rel="noreferrer"
+      style={{
+        textDecoration: "none",
+        border: "1px solid #e5e7eb",
+        borderRadius: 14,
+        padding: 16,
+        background: "#fafafa",
+      }}
+    >
+      <div style={{ fontSize: 28, marginBottom: 8 }}>🎵</div>
+      <div
+        style={{
+          fontWeight: 700,
+          color: "#111",
+          marginBottom: 4,
+        }}
+      >
+        TikTok
+      </div>
+      <div
+        style={{
+          fontSize: 13,
+          color: "#6b7280",
+        }}
+      >
+        Konten Singkat
+      </div>
+    </a>
+  </div>
+</div>
+
       </div>
     </div>
   </div>
