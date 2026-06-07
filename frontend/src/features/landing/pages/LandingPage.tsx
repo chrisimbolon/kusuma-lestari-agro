@@ -731,7 +731,6 @@ export default function LandingPage() {
         ))}
 
         {/* SOCIAL MEDIA */}
-        {/* SOCIAL MEDIA */}
 <div
   style={{
     marginTop: 32,
