@@ -189,7 +189,7 @@ const SOCIAL_MEDIA = [
   {
     name: "Instagram",
     description: "Foto & Aktivitas",
-    url: "https://instagram.com/kla",
+    url: "https://www.instagram.com/kusumalestariagro/",
     icon: FaInstagram,
     bg: "#fff1f7",
   },
