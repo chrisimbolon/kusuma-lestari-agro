@@ -908,7 +908,7 @@ export default function LandingPage() {
             Dapatkan akses ke produk berkualitas, margin kompetitif, dan dukungan penuh tim kami. Bergabung bersama 500+ mitra distributor di seluruh Indonesia.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#kontak" className="kla-btn-primary" style={{ background: "#7ab648" }}>Daftar Sebagai Distributor</a>
+            {/* <a href="#kontak" className="kla-btn-primary" style={{ background: "#7ab648" }}>Daftar Sebagai Distributor</a> */}
             {/* <a href="#kontak" className="kla-btn-outline" style={{ borderColor: "#4a7a4a", color: "#7ab648" }}>Pelajari Lebih Lanjut</a> */}
           </div>
         </div>
