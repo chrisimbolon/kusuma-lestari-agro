@@ -196,7 +196,7 @@ const SOCIAL_MEDIA = [
   {
     name: "YouTube",
     description: "Video Edukasi",
-    url: "https://youtube.com/@kla",
+    url: "https://www.youtube.com/@KusumaLestariAgro",
     icon: FaYoutube,
     bg: "#fef2f2",
   },
