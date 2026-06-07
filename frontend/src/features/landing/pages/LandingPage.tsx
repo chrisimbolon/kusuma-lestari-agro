@@ -203,7 +203,7 @@ const SOCIAL_MEDIA = [
   {
     name: "TikTok",
     description: "Konten Singkat",
-    url: "https://tiktok.com/@kla",
+    url: "https://www.tiktok.com/@kusumalestariagro22",
     icon: FaTiktok,
     bg: "#f8fafc",
   },
