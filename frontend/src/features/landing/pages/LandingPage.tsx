@@ -182,7 +182,7 @@ const SOCIAL_MEDIA = [
   {
     name: "Facebook",
     description: "Komunitas & Informasi",
-    url: "https://facebook.com/kla",
+    url: "https://www.facebook.com/profile.php?id=100085858819480",
     icon: FaFacebookF,
     bg: "#eff6ff",
   },
