@@ -6,10 +6,10 @@
  * ║  Fix: import api from "@/lib/axios"  (was "../../lib/axios") ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
-
 import api from "@/lib/axios"; // ← THE FIX
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // ─────────────────────────────────────────────────────────────
 //  TYPES
@@ -195,6 +195,7 @@ export default function PublicGalleryPage() {
     retry:     2,
   });
 
+  const nav = useNavigate();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const openLightbox  = useCallback((i: number) => setLightboxIndex(i), []);
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
@@ -223,6 +224,37 @@ export default function PublicGalleryPage() {
               </div>
             )}
           </div>
+          <button
+  onClick={() => nav("/")}
+  style={{
+    display:      "inline-flex",
+    alignItems:   "center",
+    gap:          6,
+    marginTop:    28,
+    background:   "transparent",
+    border:       "1px solid rgba(255,255,255,0.18)",
+    borderRadius: 50,
+    padding:      "7px 18px 7px 12px",
+    color:        "rgba(255,255,255,0.65)",
+    fontSize:     13,
+    fontFamily:   "'DM Sans', sans-serif",
+    cursor:       "pointer",
+    transition:   "all 0.2s",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.background    = "rgba(106,191,63,0.15)";
+    e.currentTarget.style.borderColor   = "#6abf3f";
+    e.currentTarget.style.color         = "#8ed45c";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.background    = "transparent";
+    e.currentTarget.style.borderColor   = "rgba(255,255,255,0.18)";
+    e.currentTarget.style.color         = "rgba(255,255,255,0.65)";
+  }}
+>
+  <span style={{ fontSize: 16 }}>←</span>
+  Kembali ke Beranda
+</button>
         </div>
 
         <div style={{ height: 24, background: "#f4f6ef" }} />
