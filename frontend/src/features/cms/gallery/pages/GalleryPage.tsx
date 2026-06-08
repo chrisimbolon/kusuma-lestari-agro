@@ -19,7 +19,6 @@ import {
   type ChangeEvent,
   type DragEvent,
 } from "react";
-import { useNavigate } from "react-router-dom";
 import type { GalleryImage, GalleryMutatePayload } from "../api/galleryApi";
 import { useGallery } from "../hooks/useGallery";
 
@@ -790,7 +789,7 @@ export default function GalleryPage() {
     remove,
   } = useGallery();
 
-  const navigate = useNavigate();
+  
   const [modal,  setModal]  = useState<ModalState>(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "active" | "inactive">("all");
