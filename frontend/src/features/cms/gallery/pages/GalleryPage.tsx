@@ -870,21 +870,6 @@ export default function GalleryPage() {
           >
             {/* Left — title */}
             <div>
-              <button
-  onClick={() => navigate("/")}
-  style={{
-    display: "inline-flex", alignItems: "center", gap: 6,
-    background: "transparent", border: `1px solid ${T.border}`,
-    borderRadius: 8, padding: "5px 12px 5px 8px",
-    fontSize: 13, fontFamily: T.mono, color: T.textMuted,
-    cursor: "pointer", marginBottom: 12, transition: "all 0.2s",
-  }}
-  onMouseEnter={(e) => { e.currentTarget.style.background = T.greenLight; e.currentTarget.style.color = T.greenMid; e.currentTarget.style.borderColor = T.greenAccent; }}
-  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.textMuted; e.currentTarget.style.borderColor = T.border; }}
->
-  <span style={{ fontSize: 15 }}>←</span>
-  Kembali ke Beranda
-</button>
               <div
                 style={{
                   display:    "flex",
