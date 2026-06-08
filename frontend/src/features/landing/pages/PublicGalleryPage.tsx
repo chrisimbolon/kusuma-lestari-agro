@@ -223,8 +223,7 @@ export default function PublicGalleryPage() {
                 <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 13 }}>{images.length} foto</span>
               </div>
             )}
-          </div>
-          <button
+            <button
   onClick={() => nav("/")}
   style={{
     display:      "inline-flex",
@@ -255,6 +254,8 @@ export default function PublicGalleryPage() {
   <span style={{ fontSize: 16 }}>←</span>
   Kembali ke Beranda
 </button>
+          </div>
+          
         </div>
 
         <div style={{ height: 24, background: "#f4f6ef" }} />
