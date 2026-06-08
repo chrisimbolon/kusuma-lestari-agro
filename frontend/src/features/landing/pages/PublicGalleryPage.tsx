@@ -2,7 +2,6 @@
  * ╔═══════════════════════════════════════════════════════════════╗
  * ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
  * ║         src/features/landing/pages/PublicGalleryPage.tsx     ║
- * ║                                                               ║
  * ║  Fix: import api from "@/lib/axios"  (was "../../lib/axios") ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
