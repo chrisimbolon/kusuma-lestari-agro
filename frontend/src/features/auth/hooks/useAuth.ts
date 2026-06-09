@@ -52,7 +52,7 @@ export function useAuth() {
       // Even if this fails (e.g. network error), clear client state
     } finally {
       storeLogout();
-      navigate("/login", { replace: true });
+      navigate("/", { replace: true });
     }
   }, [storeLogout, navigate]);
 
