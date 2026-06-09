@@ -216,13 +216,54 @@ export default function PublicGalleryPage() {
             </div>
             <h1 style={{ margin: "0 0 16px", color: "#fff", fontSize: "clamp(32px,5vw,52px)", fontFamily: "'Lora', serif", fontWeight: 600, lineHeight: 1.18 }}>Galeri Kami</h1>
             <p style={{ margin: 0, color: "rgba(255,255,255,0.55)", fontSize: 15, maxWidth: 480, lineHeight: 1.75 }}>Dokumentasi perjalanan, produk unggulan, dan momen kebersamaan bersama para petani serta distributor kami di seluruh Indonesia.</p>
-            {!isLoading && !isError && images.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12, marginTop: 24 }}>
+  {/* 25 foto pill */}
+  {!isLoading && !isError && images.length > 0 && (
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 50, padding: "5px 14px" }}>
+      <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#6abf3f" }} />
+      <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 13 }}>{images.length} foto</span>
+    </div>
+  )}
+
+  {/* Back button below */}
+  <button
+  onClick={() => nav("/")}
+  style={{
+    display:      "inline-flex",
+    alignItems:   "center",
+    gap:          6,
+    background:   "transparent",
+    border:       "1px solid rgba(255,255,255,0.18)",
+    borderRadius: 50,
+    padding:      "7px 18px 7px 12px",
+    color:        "rgba(255,255,255,0.65)",
+    fontSize:     13,
+    fontFamily:   "'DM Sans', sans-serif",
+    cursor:       "pointer",
+    transition:   "all 0.2s",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.background   = "rgba(106,191,63,0.15)";
+    e.currentTarget.style.borderColor  = "#6abf3f";
+    e.currentTarget.style.color        = "#8ed45c";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.background   = "transparent";
+    e.currentTarget.style.borderColor  = "rgba(255,255,255,0.18)";
+    e.currentTarget.style.color        = "rgba(255,255,255,0.65)";
+  }}
+>
+  <span style={{ fontSize: 16 }}>←</span>
+  Kembali ke Beranda
+</button>
+</div>
+            {/* {!isLoading && !isError && images.length > 0 && (
               <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 24, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 50, padding: "5px 14px" }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#6abf3f" }} />
                 <span style={{ color: "rgba(255,255,255,0.65)", fontSize: 13 }}>{images.length} foto</span>
               </div>
-            )}
-            <button
+            )} */}
+            {/* <button
   onClick={() => nav("/")}
   style={{
     display:      "inline-flex",
@@ -252,7 +293,7 @@ export default function PublicGalleryPage() {
 >
   <span style={{ fontSize: 16 }}>←</span>
   Kembali ke Beranda
-</button>
+</button> */}
           </div>
           
         </div>
