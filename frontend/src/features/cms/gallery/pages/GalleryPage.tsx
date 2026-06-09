@@ -10,8 +10,10 @@
  * ║  • Replace image file                                        ║
  * ║  • Delete with confirmation                                  ║
  * ║  • Inline order editing (click number to edit)               ║
+ * ║  • Responsive: mobile-first, breakpoint 640px                ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
+
 import {
   useCallback,
   useRef,
@@ -165,7 +167,7 @@ function FileDropZone({
       onDragLeave={() => setDrag(false)}
       onDrop={handleDrop}
       style={{
-        border:      `2px dashed ${drag ? T.greenAccent : T.border}`,
+        border:       `2px dashed ${drag ? T.greenAccent : T.border}`,
         borderRadius: 12,
         background:   drag ? T.greenLight : T.surfaceAlt,
         padding:      preview ? 8 : "32px 16px",
@@ -195,29 +197,14 @@ function FileDropZone({
               display:      "block",
             }}
           />
-          <p
-            style={{
-              marginTop:  8,
-              fontSize:   12,
-              color:      T.textMuted,
-              fontFamily: T.mono,
-            }}
-          >
+          <p style={{ marginTop: 8, fontSize: 12, color: T.textMuted, fontFamily: T.mono }}>
             {file?.name ?? "Foto terpilih"} — klik untuk ganti
           </p>
         </>
       ) : (
         <>
           <div style={{ fontSize: 32, marginBottom: 8 }}>🖼️</div>
-          <p
-            style={{
-              margin:     0,
-              fontSize:   14,
-              fontWeight: 500,
-              color:      T.textMid,
-              fontFamily: T.sans,
-            }}
-          >
+          <p style={{ margin: 0, fontSize: 14, fontWeight: 500, color: T.textMid, fontFamily: T.sans }}>
             Klik atau seret foto ke sini
           </p>
           <p style={{ margin: "4px 0 0", fontSize: 12, color: T.textMuted }}>
@@ -239,12 +226,7 @@ interface GalleryFormProps {
   isLoading: boolean;
 }
 
-function GalleryForm({
-  initial,
-  onSubmit,
-  onCancel,
-  isLoading,
-}: GalleryFormProps) {
+function GalleryForm({ initial, onSubmit, onCancel, isLoading }: GalleryFormProps) {
   const [title,    setTitle]    = useState(initial?.title     ?? "");
   const [caption,  setCaption]  = useState(initial?.caption   ?? "");
   const [order,    setOrder]    = useState(initial?.order     ?? 0);
@@ -297,49 +279,22 @@ function GalleryForm({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-      {/* Drop zone */}
       <div>
-        <span style={labelStyle}>
-          {initial ? "Ganti Foto (opsional)" : "Foto *"}
-        </span>
+        <span style={labelStyle}>{initial ? "Ganti Foto (opsional)" : "Foto *"}</span>
         <FileDropZone file={file} preview={preview} onChange={handleFile} />
       </div>
-
-      {/* Title */}
       <div>
         <label style={labelStyle}>Judul *</label>
-        <input
-          style={inputStyle}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="contoh: Petani Negeri"
-          maxLength={120}
-        />
+        <input style={inputStyle} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="contoh: Petani Negeri" maxLength={120} />
       </div>
-
-      {/* Caption */}
       <div>
         <label style={labelStyle}>Keterangan</label>
-        <textarea
-          style={{ ...inputStyle, resize: "vertical", minHeight: 72 }}
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-          placeholder="Deskripsi singkat foto (opsional)"
-          maxLength={300}
-        />
+        <textarea style={{ ...inputStyle, resize: "vertical", minHeight: 72 }} value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Deskripsi singkat foto (opsional)" maxLength={300} />
       </div>
-
-      {/* Order + Status */}
       <div style={{ display: "flex", gap: 16 }}>
         <div style={{ flex: 1 }}>
           <label style={labelStyle}>Urutan</label>
-          <input
-            style={inputStyle}
-            type="number"
-            min={0}
-            value={order}
-            onChange={(e) => setOrder(Number(e.target.value))}
-          />
+          <input style={inputStyle} type="number" min={0} value={order} onChange={(e) => setOrder(Number(e.target.value))} />
         </div>
         <div style={{ flex: 1 }}>
           <label style={labelStyle}>Status</label>
@@ -347,99 +302,36 @@ function GalleryForm({
             type="button"
             onClick={() => setIsActive((v) => !v)}
             style={{
-              width:        "100%",
-              padding:      "10px 12px",
-              border:       `1px solid ${isActive ? T.greenAccent : T.border}`,
+              width: "100%", padding: "10px 12px",
+              border: `1px solid ${isActive ? T.greenAccent : T.border}`,
               borderRadius: 8,
-              background:   isActive ? T.greenLight : T.surfaceAlt,
-              color:        isActive ? T.greenMid   : T.textMuted,
-              fontSize:     13,
-              fontFamily:   T.sans,
-              fontWeight:   500,
-              cursor:       "pointer",
-              display:      "flex",
-              alignItems:   "center",
-              gap:          8,
-              transition:   "all 0.2s",
-              boxSizing:    "border-box",
+              background: isActive ? T.greenLight : T.surfaceAlt,
+              color: isActive ? T.greenMid : T.textMuted,
+              fontSize: 13, fontFamily: T.sans, fontWeight: 500,
+              cursor: "pointer", display: "flex", alignItems: "center",
+              gap: 8, transition: "all 0.2s", boxSizing: "border-box",
             }}
           >
-            <div
-              style={{
-                width:        8,
-                height:       8,
-                borderRadius: "50%",
-                background:   isActive ? T.greenAccent : T.border,
-                flexShrink:   0,
-              }}
-            />
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: isActive ? T.greenAccent : T.border, flexShrink: 0 }} />
             {isActive ? "Aktif" : "Nonaktif"}
           </button>
         </div>
       </div>
-
-      {/* Error */}
       {error && (
-        <p
-          style={{
-            margin:       0,
-            fontSize:     13,
-            color:        T.danger,
-            background:   T.dangerLight,
-            padding:      "8px 12px",
-            borderRadius: 8,
-            fontFamily:   T.sans,
-          }}
-        >
+        <p style={{ margin: 0, fontSize: 13, color: T.danger, background: T.dangerLight, padding: "8px 12px", borderRadius: 8, fontFamily: T.sans }}>
           {error}
         </p>
       )}
-
-      {/* Actions */}
-      <div
-        style={{
-          display:         "flex",
-          gap:             10,
-          justifyContent:  "flex-end",
-          paddingTop:      4,
-        }}
-      >
-        <button
-          onClick={onCancel}
-          style={{
-            padding:      "9px 20px",
-            borderRadius: 8,
-            border:       `1px solid ${T.border}`,
-            background:   T.surfaceAlt,
-            color:        T.textMid,
-            fontSize:     14,
-            fontFamily:   T.sans,
-            cursor:       "pointer",
-          }}
-        >
+      <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", paddingTop: 4 }}>
+        <button onClick={onCancel} style={{ padding: "9px 20px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surfaceAlt, color: T.textMid, fontSize: 14, fontFamily: T.sans, cursor: "pointer" }}>
           Batal
         </button>
         <button
           onClick={handleSubmit}
           disabled={isLoading}
-          style={{
-            padding:      "9px 24px",
-            borderRadius: 8,
-            border:       "none",
-            background:   isLoading ? T.border : T.green,
-            color:        isLoading ? T.textMuted : "#fff",
-            fontSize:     14,
-            fontFamily:   T.sans,
-            fontWeight:   600,
-            cursor:       isLoading ? "not-allowed" : "pointer",
-            transition:   "background 0.2s",
-          }}
+          style={{ padding: "9px 24px", borderRadius: 8, border: "none", background: isLoading ? T.border : T.green, color: isLoading ? T.textMuted : "#fff", fontSize: 14, fontFamily: T.sans, fontWeight: 600, cursor: isLoading ? "not-allowed" : "pointer", transition: "background 0.2s" }}
         >
-          {isLoading
-            ? "Menyimpan…"
-            : initial
-              ? "Simpan Perubahan"
-              : "Unggah Foto"}
+          {isLoading ? "Menyimpan…" : initial ? "Simpan Perubahan" : "Unggah Foto"}
         </button>
       </div>
     </div>
@@ -450,11 +342,7 @@ function GalleryForm({
 //  IMAGE CARD
 // ─────────────────────────────────────────────────────────────
 function ImageCard({
-  image,
-  index,
-  onEdit,
-  onDelete,
-  onReorder,
+  image, index, onEdit, onDelete, onReorder,
 }: {
   image:     GalleryImage;
   index:     number;
@@ -477,124 +365,47 @@ function ImageCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background:   T.surface,
-        borderRadius: 14,
-        overflow:     "hidden",
-        border:       `1px solid ${hovered ? T.greenAccent : T.border}`,
-        boxShadow:    hovered
-          ? "0 8px 32px rgba(45,74,20,0.14)"
-          : "0 1px 4px rgba(45,74,20,0.06)",
-        transition:   "all 0.25s",
-        transform:    hovered ? "translateY(-2px)" : "none",
-        animation:    "kla-fadeup 0.4s ease both",
+        background:     T.surface,
+        borderRadius:   14,
+        overflow:       "hidden",
+        border:         `1px solid ${hovered ? T.greenAccent : T.border}`,
+        boxShadow:      hovered ? "0 8px 32px rgba(45,74,20,0.14)" : "0 1px 4px rgba(45,74,20,0.06)",
+        transition:     "all 0.25s",
+        transform:      hovered ? "translateY(-2px)" : "none",
+        animation:      "kla-fadeup 0.4s ease both",
         animationDelay: `${Math.min(index * 40, 400)}ms`,
       }}
     >
-      {/* Image */}
-      <div
-        style={{
-          position:    "relative",
-          aspectRatio: "4/3",
-          overflow:    "hidden",
-          background:  T.surfaceAlt,
-        }}
-      >
+      <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", background: T.surfaceAlt }}>
         <img
           src={image.image}
           alt={image.title}
-          style={{
-            width:      "100%",
-            height:     "100%",
-            objectFit:  "cover",
-            display:    "block",
-            transition: "transform 0.4s",
-            transform:  hovered ? "scale(1.05)" : "scale(1)",
-          }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s", transform: hovered ? "scale(1.05)" : "scale(1)" }}
         />
-
-        {/* Active badge */}
-        <div
-          style={{
-            position:   "absolute",
-            top:        10,
-            left:       10,
-            background: image.is_active ? T.greenLight  : T.amberLight,
-            color:      image.is_active ? T.greenMid    : T.amber,
-            border:     `1px solid ${image.is_active ? "#b6dcaa" : "#f3c87e"}`,
-            borderRadius: 50,
-            padding:    "2px 10px",
-            fontSize:   11,
-            fontFamily: T.mono,
-            fontWeight: 500,
-          }}
-        >
+        <div style={{
+          position: "absolute", top: 10, left: 10,
+          background: image.is_active ? T.greenLight : T.amberLight,
+          color:      image.is_active ? T.greenMid   : T.amber,
+          border:     `1px solid ${image.is_active ? "#b6dcaa" : "#f3c87e"}`,
+          borderRadius: 50, padding: "2px 10px",
+          fontSize: 11, fontFamily: T.mono, fontWeight: 500,
+        }}>
           {image.is_active ? "Aktif" : "Nonaktif"}
         </div>
       </div>
 
-      {/* Body */}
       <div style={{ padding: "14px 16px 16px" }}>
-        {/* Title */}
-        <p
-          style={{
-            margin:       "0 0 4px",
-            fontSize:     14,
-            fontWeight:   600,
-            color:        T.text,
-            fontFamily:   T.sans,
-            overflow:     "hidden",
-            whiteSpace:   "nowrap",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {image.title || (
-            <span style={{ color: T.textMuted, fontStyle: "italic" }}>
-              Tanpa judul
-            </span>
-          )}
+        <p style={{ margin: "0 0 4px", fontSize: 14, fontWeight: 600, color: T.text, fontFamily: T.sans, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
+          {image.title || <span style={{ color: T.textMuted, fontStyle: "italic" }}>Tanpa judul</span>}
         </p>
-
-        {/* Caption */}
         {image.caption && (
-          <p
-            style={{
-              margin:              "0 0 12px",
-              fontSize:            12,
-              color:               T.textMuted,
-              lineHeight:          1.5,
-              overflow:            "hidden",
-              display:             "-webkit-box",
-              WebkitLineClamp:     2,
-              WebkitBoxOrient:     "vertical",
-            }}
-          >
+          <p style={{ margin: "0 0 12px", fontSize: 12, color: T.textMuted, lineHeight: 1.5, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
             {image.caption}
           </p>
         )}
-
-        {/* Order + actions row */}
-        <div
-          style={{
-            display:        "flex",
-            alignItems:     "center",
-            justifyContent: "space-between",
-            gap:            8,
-            paddingTop:     10,
-            borderTop:      `1px solid ${T.border}`,
-            marginTop:      image.caption ? 0 : 12,
-          }}
-        >
-          {/* Inline order editor */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, paddingTop: 10, borderTop: `1px solid ${T.border}`, marginTop: image.caption ? 0 : 12 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span
-              style={{
-                fontSize:   11,
-                color:      T.textMuted,
-                fontFamily: T.mono,
-              }}
-            >
-              urutan
-            </span>
+            <span style={{ fontSize: 11, color: T.textMuted, fontFamily: T.mono }}>urutan</span>
             {editingOrder ? (
               <input
                 autoFocus
@@ -602,73 +413,22 @@ function ImageCard({
                 onChange={(e) => setOrderVal(e.target.value)}
                 onBlur={commitOrder}
                 onKeyDown={(e) => e.key === "Enter" && commitOrder()}
-                style={{
-                  width:        44,
-                  padding:      "2px 6px",
-                  border:       `1px solid ${T.greenAccent}`,
-                  borderRadius: 6,
-                  fontSize:     12,
-                  fontFamily:   T.mono,
-                  color:        T.text,
-                  background:   T.greenLight,
-                  outline:      "none",
-                }}
+                style={{ width: 44, padding: "2px 6px", border: `1px solid ${T.greenAccent}`, borderRadius: 6, fontSize: 12, fontFamily: T.mono, color: T.text, background: T.greenLight, outline: "none" }}
               />
             ) : (
               <button
-                onClick={() => {
-                  setOrderVal(String(image.order));
-                  setEditingOrder(true);
-                }}
-                style={{
-                  background:   T.surfaceAlt,
-                  border:       `1px solid ${T.border}`,
-                  borderRadius: 6,
-                  padding:      "2px 8px",
-                  fontSize:     12,
-                  fontFamily:   T.mono,
-                  color:        T.textMid,
-                  cursor:       "pointer",
-                  minWidth:     36,
-                }}
+                onClick={() => { setOrderVal(String(image.order)); setEditingOrder(true); }}
+                style={{ background: T.surfaceAlt, border: `1px solid ${T.border}`, borderRadius: 6, padding: "2px 8px", fontSize: 12, fontFamily: T.mono, color: T.textMid, cursor: "pointer", minWidth: 36 }}
               >
                 {image.order}
               </button>
             )}
           </div>
-
-          {/* Edit / Delete */}
           <div style={{ display: "flex", gap: 8 }}>
-            <button
-              onClick={() => onEdit(image)}
-              style={{
-                background:   T.greenLight,
-                color:        T.greenMid,
-                border:       "1px solid #b6dcaa",
-                borderRadius: 8,
-                padding:      "5px 14px",
-                fontSize:     12,
-                fontFamily:   T.sans,
-                fontWeight:   500,
-                cursor:       "pointer",
-              }}
-            >
+            <button onClick={() => onEdit(image)} style={{ background: T.greenLight, color: T.greenMid, border: "1px solid #b6dcaa", borderRadius: 8, padding: "5px 14px", fontSize: 12, fontFamily: T.sans, fontWeight: 500, cursor: "pointer" }}>
               Edit
             </button>
-            <button
-              onClick={() => onDelete(image)}
-              style={{
-                background:   T.dangerLight,
-                color:        T.danger,
-                border:       "1px solid #f5c6c2",
-                borderRadius: 8,
-                padding:      "5px 14px",
-                fontSize:     12,
-                fontFamily:   T.sans,
-                fontWeight:   500,
-                cursor:       "pointer",
-              }}
-            >
+            <button onClick={() => onDelete(image)} style={{ background: T.dangerLight, color: T.danger, border: "1px solid #f5c6c2", borderRadius: 8, padding: "5px 14px", fontSize: 12, fontFamily: T.sans, fontWeight: 500, cursor: "pointer" }}>
               Hapus
             </button>
           </div>
@@ -681,84 +441,22 @@ function ImageCard({
 // ─────────────────────────────────────────────────────────────
 //  DELETE CONFIRM DIALOG
 // ─────────────────────────────────────────────────────────────
-function DeleteDialog({
-  image,
-  onConfirm,
-  onCancel,
-  isLoading,
-}: {
-  image:     GalleryImage;
-  onConfirm: () => void;
-  onCancel:  () => void;
-  isLoading: boolean;
+function DeleteDialog({ image, onConfirm, onCancel, isLoading }: {
+  image: GalleryImage; onConfirm: () => void; onCancel: () => void; isLoading: boolean;
 }) {
   return (
     <div style={{ textAlign: "center" }}>
       <div style={{ fontSize: 40, marginBottom: 12 }}>🗑️</div>
-      <p
-        style={{
-          fontFamily: T.sans,
-          fontWeight: 600,
-          fontSize:   16,
-          color:      T.text,
-          margin:     "0 0 8px",
-        }}
-      >
-        Hapus foto ini?
+      <p style={{ fontFamily: T.sans, fontWeight: 600, fontSize: 16, color: T.text, margin: "0 0 8px" }}>Hapus foto ini?</p>
+      <p style={{ fontFamily: T.sans, fontSize: 14, color: T.textMuted, margin: "0 0 6px" }}>
+        <strong style={{ color: T.text }}>{image.title || "Foto tanpa judul"}</strong>
       </p>
-      <p
-        style={{
-          fontFamily: T.sans,
-          fontSize:   14,
-          color:      T.textMuted,
-          margin:     "0 0 6px",
-        }}
-      >
-        <strong style={{ color: T.text }}>
-          {image.title || "Foto tanpa judul"}
-        </strong>
-      </p>
-      <p
-        style={{
-          fontFamily: T.sans,
-          fontSize:   13,
-          color:      T.danger,
-          margin:     "0 0 24px",
-        }}
-      >
-        Tindakan ini tidak dapat dibatalkan.
-      </p>
+      <p style={{ fontFamily: T.sans, fontSize: 13, color: T.danger, margin: "0 0 24px" }}>Tindakan ini tidak dapat dibatalkan.</p>
       <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-        <button
-          onClick={onCancel}
-          style={{
-            padding:      "9px 24px",
-            borderRadius: 8,
-            border:       `1px solid ${T.border}`,
-            background:   T.surfaceAlt,
-            color:        T.textMid,
-            fontSize:     14,
-            fontFamily:   T.sans,
-            cursor:       "pointer",
-          }}
-        >
+        <button onClick={onCancel} style={{ padding: "9px 24px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.surfaceAlt, color: T.textMid, fontSize: 14, fontFamily: T.sans, cursor: "pointer" }}>
           Batal
         </button>
-        <button
-          onClick={onConfirm}
-          disabled={isLoading}
-          style={{
-            padding:      "9px 24px",
-            borderRadius: 8,
-            border:       "none",
-            background:   isLoading ? T.border : T.danger,
-            color:        isLoading ? T.textMuted : "#fff",
-            fontSize:     14,
-            fontFamily:   T.sans,
-            fontWeight:   600,
-            cursor:       isLoading ? "not-allowed" : "pointer",
-          }}
-        >
+        <button onClick={onConfirm} disabled={isLoading} style={{ padding: "9px 24px", borderRadius: 8, border: "none", background: isLoading ? T.border : T.danger, color: isLoading ? T.textMuted : "#fff", fontSize: 14, fontFamily: T.sans, fontWeight: 600, cursor: isLoading ? "not-allowed" : "pointer" }}>
           {isLoading ? "Menghapus…" : "Ya, Hapus"}
         </button>
       </div>
@@ -777,215 +475,80 @@ type ModalState =
   | null;
 
 export default function GalleryPage() {
-  const {
-    images,
-    isLoading,
-    isError,
-    refetch,
-    create,
-    update,
-    replaceImage,
-    reorder,
-    remove,
-  } = useGallery();
+  const { images, isLoading, isError, refetch, create, update, replaceImage, reorder, remove } = useGallery();
 
-  
   const [modal,  setModal]  = useState<ModalState>(null);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<"all" | "active" | "inactive">("all");
 
   const closeModal = () => setModal(null);
 
-  // Filtered + searched list
   const filtered = images.filter((img) => {
     const q = search.toLowerCase();
-    const matchSearch =
-      img.title.toLowerCase().includes(q) ||
-      img.caption.toLowerCase().includes(q);
-    const matchFilter =
-      filter === "all"      ? true :
-      filter === "active"   ? img.is_active :
-                              !img.is_active;
+    const matchSearch  = img.title.toLowerCase().includes(q) || img.caption.toLowerCase().includes(q);
+    const matchFilter  = filter === "all" ? true : filter === "active" ? img.is_active : !img.is_active;
     return matchSearch && matchFilter;
   });
 
-  // ── Mutation handlers ──────────────────────────────────────
-  const handleCreate = async (payload: GalleryMutatePayload) => {
-    await create.mutateAsync(payload);
-    closeModal();
-  };
-
+  const handleCreate = async (payload: GalleryMutatePayload) => { await create.mutateAsync(payload); closeModal(); };
   const handleUpdate = async (payload: GalleryMutatePayload) => {
     if (modal?.type !== "edit") return;
-    if (payload.image) {
-      await replaceImage.mutateAsync({ id: modal.image.id, payload });
-    } else {
-      await update.mutateAsync({ id: modal.image.id, payload });
-    }
+    if (payload.image) { await replaceImage.mutateAsync({ id: modal.image.id, payload }); }
+    else               { await update.mutateAsync({ id: modal.image.id, payload }); }
     closeModal();
   };
+  const handleDelete  = async () => { if (modal?.type !== "delete") return; await remove.mutateAsync(modal.image.id); closeModal(); };
+  const handleReorder = (id: string, order: number) => reorder.mutate({ id, order });
 
-  const handleDelete = async () => {
-    if (modal?.type !== "delete") return;
-    await remove.mutateAsync(modal.image.id);
-    closeModal();
-  };
-
-  const handleReorder = (id: string, order: number) =>
-    reorder.mutate({ id, order });
-
-  // Stat counts
   const activeCount   = images.filter((i) => i.is_active).length;
   const inactiveCount = images.length - activeCount;
 
   return (
     <>
-      {/* Fonts */}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
-      />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" />
 
       <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.sans }}>
 
         {/* ══ PAGE HEADER ═══════════════════════════════════════ */}
-        <div
-          style={{
-            background:   T.surface,
-            borderBottom: `1px solid ${T.border}`,
-            padding:      "24px 32px",
-          }}
-        >
-          <div
-            style={{
-              maxWidth:       1200,
-              margin:         "0 auto",
-              display:        "flex",
-              alignItems:     "flex-start",
-              justifyContent: "space-between",
-              gap:            16,
-              flexWrap:       "wrap",
-            }}
-          >
-            {/* Left — title */}
+        <div className="kla-page-header" style={{ background: T.surface, borderBottom: `1px solid ${T.border}` }}>
+          <div className="kla-header-inner">
+
+            {/* Left — breadcrumb + title */}
             <div>
-              <div
-                style={{
-                  display:    "flex",
-                  alignItems: "center",
-                  gap:        6,
-                  marginBottom: 6,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize:   12,
-                    color:      T.textMuted,
-                    fontFamily: T.mono,
-                  }}
-                >
-                  CMS
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 6 }}>
+                <span style={{ fontSize: 12, color: T.textMuted, fontFamily: T.mono }}>CMS</span>
                 <span style={{ fontSize: 12, color: T.border }}>›</span>
-                <span
-                  style={{
-                    fontSize:   12,
-                    color:      T.greenMid,
-                    fontFamily: T.mono,
-                    fontWeight: 500,
-                  }}
-                >
-                  Galeri
-                </span>
+                <span style={{ fontSize: 12, color: T.greenMid, fontFamily: T.mono, fontWeight: 500 }}>Galeri</span>
               </div>
-              <h1
-                style={{
-                  margin:     0,
-                  fontSize:   24,
-                  fontWeight: 700,
-                  color:      T.text,
-                  lineHeight: 1.2,
-                }}
-              >
+              <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: T.text, lineHeight: 1.2 }}>
                 Manajemen Galeri
               </h1>
-              <p
-                style={{
-                  margin:   "4px 0 0",
-                  fontSize: 13,
-                  color:    T.textMuted,
-                }}
-              >
+              <p style={{ margin: "4px 0 0", fontSize: 13, color: T.textMuted }}>
                 Kelola foto galeri yang tampil di halaman publik.
               </p>
             </div>
 
             {/* Right — stat pills + add button */}
-            <div
-              style={{
-                display:    "flex",
-                alignItems: "center",
-                gap:        10,
-                flexWrap:   "wrap",
-              }}
-            >
-              {[
-                { label: "Total",    val: images.length, color: T.textMuted, bg: T.surfaceAlt },
-                { label: "Aktif",    val: activeCount,   color: T.greenMid,  bg: T.greenLight },
-                { label: "Nonaktif", val: inactiveCount, color: T.amber,     bg: T.amberLight },
-              ].map(({ label, val, color, bg }) => (
-                <div
-                  key={label}
-                  style={{
-                    background:  bg,
-                    border:      `1px solid ${T.border}`,
-                    borderRadius: 50,
-                    padding:     "5px 14px",
-                    display:     "flex",
-                    alignItems:  "center",
-                    gap:         6,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize:   16,
-                      fontWeight: 700,
-                      color,
-                      fontFamily: T.mono,
-                    }}
-                  >
-                    {val}
-                  </span>
-                  <span style={{ fontSize: 12, color: T.textMuted }}>
-                    {label}
-                  </span>
-                </div>
-              ))}
+            <div className="kla-header-actions">
+              <div className="kla-stat-pills">
+                {[
+                  { label: "Total",    val: images.length, color: T.textMuted, bg: T.surfaceAlt },
+                  { label: "Aktif",    val: activeCount,   color: T.greenMid,  bg: T.greenLight },
+                  { label: "Nonaktif", val: inactiveCount, color: T.amber,     bg: T.amberLight },
+                ].map(({ label, val, color, bg }) => (
+                  <div key={label} style={{ background: bg, border: `1px solid ${T.border}`, borderRadius: 50, padding: "5px 14px", display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ fontSize: 16, fontWeight: 700, color, fontFamily: T.mono }}>{val}</span>
+                    <span style={{ fontSize: 12, color: T.textMuted }}>{label}</span>
+                  </div>
+                ))}
+              </div>
 
               <button
                 onClick={() => setModal({ type: "create" })}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.opacity = "0.88")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.opacity = "1")
-                }
-                style={{
-                  background:   T.green,
-                  color:        "#fff",
-                  border:       "none",
-                  borderRadius: 10,
-                  padding:      "10px 20px",
-                  fontSize:     14,
-                  fontFamily:   T.sans,
-                  fontWeight:   600,
-                  cursor:       "pointer",
-                  display:      "flex",
-                  alignItems:   "center",
-                  gap:          8,
-                  boxShadow:    "0 2px 12px rgba(45,74,20,0.25)",
-                  transition:   "opacity 0.2s",
-                }}
+                className="kla-add-btn"
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                style={{ background: T.green, color: "#fff", border: "none", borderRadius: 10, fontSize: 14, fontFamily: T.sans, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, boxShadow: "0 2px 12px rgba(45,74,20,0.25)", transition: "opacity 0.2s" }}
               >
                 <span style={{ fontSize: 20, lineHeight: 1 }}>+</span>
                 Tambah Foto
@@ -995,206 +558,71 @@ export default function GalleryPage() {
         </div>
 
         {/* ══ SEARCH + FILTER BAR ═══════════════════════════════ */}
-        <div
-          style={{
-            maxWidth:   1200,
-            margin:     "0 auto",
-            padding:    "20px 32px 0",
-            display:    "flex",
-            gap:        12,
-            flexWrap:   "wrap",
-            alignItems: "center",
-          }}
-        >
-          {/* Search input */}
+        <div className="kla-toolbar">
           <div style={{ position: "relative", flex: 1, minWidth: 200 }}>
-            <span
-              style={{
-                position:      "absolute",
-                left:          12,
-                top:           "50%",
-                transform:     "translateY(-50%)",
-                fontSize:      15,
-                color:         T.textMuted,
-                pointerEvents: "none",
-              }}
-            >
-              🔍
-            </span>
+            <span style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", fontSize: 15, color: T.textMuted, pointerEvents: "none" }}>🔍</span>
             <input
-              style={{
-                width:        "100%",
-                padding:      "9px 12px 9px 38px",
-                border:       `1px solid ${T.border}`,
-                borderRadius: 10,
-                fontSize:     14,
-                fontFamily:   T.sans,
-                color:        T.text,
-                background:   T.surface,
-                outline:      "none",
-                boxSizing:    "border-box",
-              }}
+              className="kla-search-input"
+              style={{ width: "100%", padding: "9px 12px 9px 38px", border: `1px solid ${T.border}`, borderRadius: 10, fontSize: 14, fontFamily: T.sans, color: T.text, background: T.surface, outline: "none", boxSizing: "border-box" }}
               placeholder="Cari judul atau keterangan…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
-          {/* Filter tabs */}
-          <div
-            style={{
-              display:      "flex",
-              background:   T.surface,
-              border:       `1px solid ${T.border}`,
-              borderRadius: 10,
-              overflow:     "hidden",
-            }}
-          >
-            {(["all", "active", "inactive"] as const).map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                style={{
-                  padding:    "8px 18px",
-                  border:     "none",
-                  background: filter === f ? T.green : "transparent",
-                  color:      filter === f ? "#fff" : T.textMuted,
-                  fontSize:   13,
-                  fontFamily: T.sans,
-                  fontWeight: filter === f ? 600 : 400,
-                  cursor:     "pointer",
-                  transition: "all 0.15s",
-                }}
-              >
-                {f === "all"
-                  ? "Semua"
-                  : f === "active"
-                    ? "Aktif"
-                    : "Nonaktif"}
-              </button>
-            ))}
+          <div className="kla-filter-row">
+            <div style={{ display: "flex", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, overflow: "hidden" }}>
+              {(["all", "active", "inactive"] as const).map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  style={{ padding: "8px 14px", border: "none", background: filter === f ? T.green : "transparent", color: filter === f ? "#fff" : T.textMuted, fontSize: 13, fontFamily: T.sans, fontWeight: filter === f ? 600 : 400, cursor: "pointer", transition: "all 0.15s" }}
+                >
+                  {f === "all" ? "Semua" : f === "active" ? "Aktif" : "Nonaktif"}
+                </button>
+              ))}
+            </div>
+            {!isLoading && (
+              <span style={{ fontSize: 12, color: T.textMuted, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+                {filtered.length} foto
+              </span>
+            )}
           </div>
-
-          {/* Result count */}
-          {!isLoading && (
-            <span
-              style={{
-                fontSize:   12,
-                color:      T.textMuted,
-                fontFamily: T.mono,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {filtered.length} foto
-            </span>
-          )}
         </div>
 
         {/* ══ GRID AREA ══════════════════════════════════════════ */}
-        <div
-          style={{
-            maxWidth: 1200,
-            margin:   "0 auto",
-            padding:  "20px 32px 48px",
-          }}
-        >
-          {/* Loading skeleton */}
+        <div className="kla-grid-area">
           {isLoading && (
-            <div
-              style={{
-                display:             "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-                gap:                 20,
-              }}
-            >
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 20 }}>
               {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  style={{
-                    borderRadius:    14,
-                    height:          300,
-                    background:
-                      "linear-gradient(110deg,#e4ead8 0%,#cdd6bc 45%,#e4ead8 100%)",
-                    backgroundSize:  "200% 100%",
-                    animation:       "kla-shimmer 1.8s ease-in-out infinite",
-                  }}
-                />
+                <div key={i} style={{ borderRadius: 14, height: 300, background: "linear-gradient(110deg,#e4ead8 0%,#cdd6bc 45%,#e4ead8 100%)", backgroundSize: "200% 100%", animation: "kla-shimmer 1.8s ease-in-out infinite" }} />
               ))}
             </div>
           )}
 
-          {/* Error */}
           {isError && (
             <div style={{ textAlign: "center", padding: "64px 24px" }}>
-              <p
-                style={{
-                  fontFamily:   T.sans,
-                  color:        T.danger,
-                  fontSize:     15,
-                  marginBottom: 16,
-                }}
-              >
-                Gagal memuat data galeri.
-              </p>
-              <button
-                onClick={() => refetch()}
-                style={{
-                  background:   T.green,
-                  color:        "#fff",
-                  border:       "none",
-                  borderRadius: 8,
-                  padding:      "10px 24px",
-                  fontFamily:   T.sans,
-                  fontSize:     14,
-                  cursor:       "pointer",
-                }}
-              >
+              <p style={{ fontFamily: T.sans, color: T.danger, fontSize: 15, marginBottom: 16 }}>Gagal memuat data galeri.</p>
+              <button onClick={() => refetch()} style={{ background: T.green, color: "#fff", border: "none", borderRadius: 8, padding: "10px 24px", fontFamily: T.sans, fontSize: 14, cursor: "pointer" }}>
                 Coba lagi
               </button>
             </div>
           )}
 
-          {/* Empty */}
           {!isLoading && !isError && filtered.length === 0 && (
             <div style={{ textAlign: "center", padding: "64px 24px" }}>
               <div style={{ fontSize: 48, marginBottom: 12 }}>🌿</div>
-              <p
-                style={{
-                  fontFamily: T.sans,
-                  fontSize:   16,
-                  color:      T.textMid,
-                  fontWeight: 600,
-                  margin:     "0 0 6px",
-                }}
-              >
-                {search || filter !== "all"
-                  ? "Tidak ada foto yang cocok"
-                  : "Belum ada foto"}
+              <p style={{ fontFamily: T.sans, fontSize: 16, color: T.textMid, fontWeight: 600, margin: "0 0 6px" }}>
+                {search || filter !== "all" ? "Tidak ada foto yang cocok" : "Belum ada foto"}
               </p>
-              <p
-                style={{
-                  fontFamily: T.sans,
-                  fontSize:   13,
-                  color:      T.textMuted,
-                  margin:     0,
-                }}
-              >
-                {search || filter !== "all"
-                  ? "Coba ubah filter atau kata kunci pencarian."
-                  : 'Klik "Tambah Foto" untuk mulai mengisi galeri.'}
+              <p style={{ fontFamily: T.sans, fontSize: 13, color: T.textMuted, margin: 0 }}>
+                {search || filter !== "all" ? "Coba ubah filter atau kata kunci pencarian." : 'Klik "Tambah Foto" untuk mulai mengisi galeri.'}
               </p>
             </div>
           )}
 
-          {/* Image grid */}
           {!isLoading && !isError && filtered.length > 0 && (
-            <div
-              style={{
-                display:             "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-                gap:                 20,
-              }}
-            >
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 20 }}>
               {filtered.map((img, i) => (
                 <ImageCard
                   key={img.id}
@@ -1211,40 +639,23 @@ export default function GalleryPage() {
       </div>
 
       {/* ══ MODALS ══════════════════════════════════════════════ */}
-
       {modal?.type === "create" && (
         <Modal title="Tambah Foto Baru" onClose={closeModal}>
-          <GalleryForm
-            onSubmit={handleCreate}
-            onCancel={closeModal}
-            isLoading={create.isPending}
-          />
+          <GalleryForm onSubmit={handleCreate} onCancel={closeModal} isLoading={create.isPending} />
         </Modal>
       )}
-
       {modal?.type === "edit" && (
         <Modal title="Edit Foto" onClose={closeModal}>
-          <GalleryForm
-            initial={modal.image}
-            onSubmit={handleUpdate}
-            onCancel={closeModal}
-            isLoading={update.isPending || replaceImage.isPending}
-          />
+          <GalleryForm initial={modal.image} onSubmit={handleUpdate} onCancel={closeModal} isLoading={update.isPending || replaceImage.isPending} />
         </Modal>
       )}
-
       {modal?.type === "delete" && (
         <Modal title="Konfirmasi Hapus" onClose={closeModal}>
-          <DeleteDialog
-            image={modal.image}
-            onConfirm={handleDelete}
-            onCancel={closeModal}
-            isLoading={remove.isPending}
-          />
+          <DeleteDialog image={modal.image} onConfirm={handleDelete} onCancel={closeModal} isLoading={remove.isPending} />
         </Modal>
       )}
 
-      {/* ══ GLOBAL KEYFRAMES ════════════════════════════════════ */}
+      {/* ══ GLOBAL STYLES + RESPONSIVE ══════════════════════════ */}
       <style>{`
         @keyframes kla-shimmer {
           0%   { background-position:  200% 0; }
@@ -1259,6 +670,28 @@ export default function GalleryPage() {
           to   { opacity: 1; transform: scale(1)    translateY(0);   }
         }
         * { box-sizing: border-box; }
+
+        /* ── Layout containers ── */
+        .kla-page-header  { padding: 24px 32px; }
+        .kla-header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        .kla-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .kla-stat-pills   { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .kla-add-btn      { padding: 10px 20px; }
+        .kla-toolbar      { max-width: 1200px; margin: 0 auto; padding: 20px 32px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .kla-filter-row   { display: flex; align-items: center; gap: 12px; }
+        .kla-grid-area    { max-width: 1200px; margin: 0 auto; padding: 20px 32px 48px; }
+
+        /* ── Mobile (≤ 640px) ── */
+        @media (max-width: 640px) {
+          .kla-page-header  { padding: 16px; }
+          .kla-header-inner { flex-direction: column; gap: 12px; }
+          .kla-header-actions { width: 100%; flex-direction: column; align-items: stretch; gap: 10px; }
+          .kla-stat-pills   { justify-content: flex-start; gap: 6px; }
+          .kla-add-btn      { width: 100%; justify-content: center; padding: 12px 20px; }
+          .kla-toolbar      { padding: 12px 16px 0; flex-direction: column; align-items: stretch; gap: 10px; }
+          .kla-filter-row   { justify-content: space-between; }
+          .kla-grid-area    { padding: 16px 16px 48px; }
+        }
       `}</style>
     </>
   );
