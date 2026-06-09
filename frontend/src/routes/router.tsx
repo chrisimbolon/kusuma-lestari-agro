@@ -18,7 +18,7 @@ const LoginPage         = lazy(() => import("@/features/auth/pages/LoginPage"));
 const RegisterPage      = lazy(() => import("@/features/auth/pages/RegisterPage"));
 
 // ── PROTECTED pages ────────────────────────────────────────────
-const DashboardPage     = lazy(() => import("@/features/dashboard/pages/DashboardPage"));
+
 const GalleryPage       = lazy(() => import("@/features/cms/gallery/pages/GalleryPage"));
 
 // ── Errors ─────────────────────────────────────────────────────
@@ -66,22 +66,22 @@ export const router = createBrowserRouter([
 
   // ── PROTECTED ─────────────────────────────────────────────
   {
-    element: <ProtectedShell />,
-    children: [
-      {
-        path: "/dashboard",
-        element: <Lazy><DashboardPage /></Lazy>,
-      },
-      {
-        path: "/cms/gallery",
-        element: <Lazy><GalleryPage /></Lazy>,
-      },
-      {
-        path: "/app",
-        element: <Navigate to="/dashboard" replace />,
-      },
-    ],
-  },
+  element: <ProtectedShell />,
+  children: [
+    {
+      path: "/dashboard",
+      element: <Navigate to="/cms/gallery" replace />,
+    },
+    {
+      path: "/cms/gallery",
+      element: <Lazy><GalleryPage /></Lazy>,
+    },
+    {
+      path: "/app",
+      element: <Navigate to="/cms/gallery" replace />,
+    },
+  ],
+},
 
   // ── 404 ───────────────────────────────────────────────────
   {

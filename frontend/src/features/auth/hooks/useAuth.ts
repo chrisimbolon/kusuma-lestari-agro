@@ -40,7 +40,7 @@ export function useAuth() {
     setAuth(user, access);
 
     // Navigate to dashboard after login
-    navigate("/dashboard", { replace: true });
+    navigate("/cms/gallery", { replace: true });
   }, [setAuth, navigate]);
 
   // ── Logout ─────────────────────────────────────────────────

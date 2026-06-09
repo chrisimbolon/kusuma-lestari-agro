@@ -59,21 +59,6 @@ export function isAllowed(item: NavLeaf | NavGroup, role: UserRole): boolean {
 
 export const NAV_SECTIONS: NavSection[] = [
 
-  // ── MAIN ────────────────────────────────────────────────────
-  {
-    sectionKey:   "main",
-    sectionLabel: "",          // No label for the first section
-    items: [
-      {
-        type:    "leaf",
-        key:     "dashboard",
-        path:    "/dashboard",
-        icon:    "dashboard",
-        labelId: "Dashboard",
-      },
-    ],
-  },
-
   // ── CMS ─────────────────────────────────────────────────────
   {
     sectionKey:   "cms",
