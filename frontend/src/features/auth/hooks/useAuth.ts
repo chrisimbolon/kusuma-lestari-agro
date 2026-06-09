@@ -45,16 +45,28 @@ export function useAuth() {
 
   // ── Logout ─────────────────────────────────────────────────
   const logout = useCallback(async () => {
-    try {
-      // Tell the server to blacklist the refresh token + clear cookie
-      await authApi.logout();
-    } catch {
-      // Even if this fails (e.g. network error), clear client state
-    } finally {
-      navigate("/", { replace: true });
-      storeLogout();      
-    }
-  }, [storeLogout, navigate]);
+  try {
+    await authApi.logout();
+  } catch {
+    // silent
+  } finally {
+    // Clear state first but navigate before React re-renders
+    // Use flushSync to control render timing
+    navigate("/", { replace: true });
+    setTimeout(() => storeLogout(), 100);
+  }
+}, [storeLogout, navigate]);
+  // const logout = useCallback(async () => {
+  //   try {
+  //     // Tell the server to blacklist the refresh token + clear cookie
+  //     await authApi.logout();
+  //   } catch {
+  //     // Even if this fails (e.g. network error), clear client state
+  //   } finally {
+  //     navigate("/", { replace: true });
+  //     storeLogout();      
+  //   }
+  // }, [storeLogout, navigate]);
 
   // ── Bootstrap: re-hydrate on app start ────────────────────
   /**
