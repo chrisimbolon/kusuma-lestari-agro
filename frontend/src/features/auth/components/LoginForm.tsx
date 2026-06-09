@@ -1,6 +1,5 @@
 /**
  * src/features/auth/components/LoginForm.tsx
- *
  * Fixes:
  * 1. login is an async fn — NOT a mutation object.
  *    Removed login.mutate(), login.error, login.isPending
