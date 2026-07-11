@@ -942,7 +942,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="footer-bottom">
-            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 14, color: "#2a4a2a" }}>© 2025 PT. Kusuma Lestari Agro. Hak cipta dilindungi.</div>
+            <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 14, color: "#e8f0e8" }}>© 2025 PT. Kusuma Lestari Agro. Hak cipta dilindungi.</div>
             <button className="kla-btn-login" onClick={() => navigate("/login")} style={{ borderColor: "#2a4a2a", color: "#4a7a4a", fontSize: 13 }}>
               Login Sistem Internal →
             </button>
