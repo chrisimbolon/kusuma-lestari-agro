@@ -15,7 +15,6 @@ import {
   FaTiktok,
   FaYoutube,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/common/Navbar";
 
 const LOGO_SRC = "/Logo-KLA.png";
@@ -211,7 +210,7 @@ const SOCIAL_MEDIA = [
 //  LANDING PAGE
 // ─────────────────────────────────────────────────────────────
 export default function LandingPage() {
-  const navigate              = useNavigate();
+  // const navigate              = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
