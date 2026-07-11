@@ -2,8 +2,7 @@
  * ╔═══════════════════════════════════════════════════════════════╗
  * ║         PT. KUSUMA LESTARI AGRO — KLA System                 ║
  * ║         src/features/landing/pages/LandingPage.tsx           ║
- * ║                                                               ║
- * ║  Responsive: mobile (≥ 0px) + tablet (≥ 768px) + desktop    ║
+ * ║                                                              ║
  * ║  Navbar extracted to src/components/common/Navbar.tsx        ║
  * ╚═══════════════════════════════════════════════════════════════╝
  */
@@ -930,7 +929,7 @@ export default function LandingPage() {
             {[
               { title: "Produk",     links: ["Pupuk Granul","Pupuk Cair","Kompos Premium","Paket Tanam"] },
               { title: "Perusahaan", links: ["Tentang Kami","Sertifikasi","Blog Pertanian"] },
-              { title: "Kontak",     links: ["kusumalestariagro22@gmail.com","+62 21 1234 5678","Jakarta, Indonesia"] },
+              { title: "Kontak",     links: ["kusumalestariagro22@gmail.com","+62 21 1234 5678","Jambi, Indonesia"] },
             ].map((col) => (
               <div key={col.title}>
                 <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7ab648", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14, fontWeight: 600 }}>{col.title}</div>
