@@ -670,7 +670,7 @@ export default function LandingPage() {
             icon: "✉️",
             title: "Email Center",
             desc:
-              "info@kusumaorganik.com",
+              "kusumalestariagro22@gmail.com",
           },
           {
             icon: "📞",
