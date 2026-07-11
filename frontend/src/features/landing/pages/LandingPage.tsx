@@ -929,7 +929,7 @@ export default function LandingPage() {
             {[
               { title: "Produk",     links: ["Pupuk Granul","Pupuk Cair","Kompos Premium","Paket Tanam"] },
               { title: "Perusahaan", links: ["Tentang Kami","Sertifikasi","Blog Pertanian"] },
-              { title: "Kontak",     links: ["kusumalestariagro22@gmail.com","+62 21 1234 5678","Jambi, Indonesia"] },
+              { title: "Kontak",     links: ["kusumalestariagro22@gmail.com","https://wa.me/6285367631881","Jambi, Indonesia"] },
             ].map((col) => (
               <div key={col.title}>
                 <div style={{ fontFamily: "'IBM Plex Mono',monospace", fontSize: 10, color: "#7ab648", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14, fontWeight: 600 }}>{col.title}</div>
